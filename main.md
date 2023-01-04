@@ -1,7 +1,7 @@
 # Identity Access Management (IAM)
 IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be inherited by entities. They are necessary for services that run actions on our behalf (like EC2).
 
-Wihin IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
+Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
 # Elastic Compute Cloud (EC2)
 EC2 is a services that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc.
@@ -17,7 +17,7 @@ There are four options to rent EC2 instances.
 ## EC2 Instance Storage
 
 ### Elastic Block Store (EBS)
-We can attach EBS volumes to an EC2 instance for storage. EBS volumes are netweork drives (they are not physically attached to an instance) and are locked to an availability zone. To move a volume between AZs, we need to take a snapshot of the original volume and then create a new volume from the snapshot in the desired AZ. To move a volume between regions, we need to snapshot a volume, copy the snapshot to another region and then create a new volume from the snapshot. EBS volumes are useful because they allow us to persist our data. So if an instance fails, we can start where we left off by attaching the old instance's drive to the new one.
+We can attach EBS volumes to an EC2 instance for storage. EBS volumes are network drives (they are not physically attached to an instance) and are locked to an availability zone. To move a volume between AZs, we need to take a snapshot of the original volume and then create a new volume from the snapshot in the desired AZ. To move a volume between regions, we need to snapshot a volume, copy the snapshot to another region and then create a new volume from the snapshot. EBS volumes are useful because they allow us to persist our data. So if an instance fails, we can start where we left off by attaching the old instance's drive to the new one.
 
 At the CCP level, EBS volumes can only be attached to a single EC2 instance.
 

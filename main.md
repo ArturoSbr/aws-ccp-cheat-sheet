@@ -52,4 +52,14 @@ An ALB is a single point of access that redirects traffic to multiple EC2 instan
 In addition to ALBs, there are Network Load Balancers (NLBs) which are used to handle millions of requests per second, as well as Gateway Load Balancers (GLBs), which redirect traffic to a firewall and then back to the balancer.
 
 ### Auto-Scaling Group (ASG)
-An ASG is a group of EC2 instances that are the target of an Load Balancer. ASGs can add or remove instances based on current traffic. We can specify the minimum, maximum and desired number of instances. The ASG will automatically register new instances in the Target Group so that they share traffic from the same Load Balancer.
+An ASG is a group of EC2 instances that belong to the same Target Group of a Load Balancer. ASGs can add or remove instances based on current traffic or health status (i.e., terminate unhealthy instance and replace it with a new one.). We can specify the minimum, maximum and desired number of instances. The ASG will automatically register new instances in the Target Group so that they are registered under the Load Balancer. ASGs need a Launch Template to determine how to launch new instances when traffic increases.
+
+There are five main Auto-Scaling strategies.
+1. Manual: Manually add or remove instances.
+2. Simple/Step: Add or remove instances based on rules (i.e., if CPU usage exceeds 90%, add one instance).
+3. Target: Set a target metric and scale instances to meet that demand (i.e., keep average CPU usage at 70%).
+4. Scheduled: Adjust capacity at certain pre-scheduled times.
+5. Predictive: Learn from historic usage and scale based on the latest forecast.
+
+## Simple Storage Service (S3)
+S3 

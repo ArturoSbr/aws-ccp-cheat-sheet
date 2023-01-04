@@ -34,9 +34,9 @@ EFS is a network file system that can be mounted on multiple Linux EC2 instances
 Used for launching third-party file systems on other operating systems (Windows and Lustre).
 
 ### Amazon Machine Image (AMI)
-AMIs are customizations of EC2 isntances that specify the OS, configuration and software installed. AMIs are region-locked, so we must create a copy if we want to move an AMI across regions. AMIs are useful to automate the standardized creation of new instances. We can get faster boot times by starting instances with AMIs because all the software is pre-packaged.
+AMIs are customizations of EC2 instances that specify the OS, configuration and software installed. AMIs are region-locked, so we must create a copy if we want to move an AMI across regions. AMIs are useful to automate the standardized creation of new instances. We can get faster boot times by starting instances with AMIs because all the software is pre-packaged.
 
-To create an AMI, we can customize an EC2 instance, stop it and create an AMI from it. We can then lauch EC2 instances from this AMI.
+To create an AMI, we can customize an EC2 instance, stop it and create an AMI from it. We can then launch EC2 instances from this AMI.
 
 ### EC2 Image Builder
 It is a service used automate the process of creating, maintaining and testing EC2 AMIs.
@@ -45,3 +45,11 @@ It is a service used automate the process of creating, maintaining and testing E
 We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH. We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH.
 
 We can assign IAM Roles to our EC2 instances to be able to use AWS services from them.
+
+### Application Load Balancer (ALB)
+An ALB is a single point of access that redirects traffic to multiple EC2 instances to spread loads, avoid congestion and handle failures of downstream instances. An ALB needs a Security Group to allow incoming requests as well as a Target Group (which groups EC2 instances together and redirects traffic to them).
+
+In addition to ALBs, there are Network Load Balancers (NLBs) which are used to handle millions of requests per second, as well as Gateway Load Balancers (GLBs), which redirect traffic to a firewall and then back to the balancer.
+
+### Auto-Scaling Group (ASG)
+An ASG is a group of EC2 instances that are the target of an Load Balancer. ASGs can add or remove instances based on current traffic. We can specify the minimum, maximum and desired number of instances. The ASG will automatically register new instances in the Target Group so that they share traffic from the same Load Balancer.

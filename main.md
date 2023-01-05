@@ -62,4 +62,19 @@ There are five main Auto-Scaling strategies.
 5. Predictive: Learn from historic usage and scale based on the latest forecast.
 
 ## Simple Storage Service (S3)
-S3 
+S3 is a service where we store objects (files) into buckets (main directories). Buckets must have a globally-unique name across all of AWS and can contain folders within them. Buckets are created in a region and are available everywhere.
+
+Objects are organized by keys. A key is composed of a prefix and an object name. For example, the key `s3://my-s3-bucket/my-file.jpeg` is composed of:
+1. The prefix `s3://my-s3-bucket/`; and
+2. The object name `my-file.jpeg`.
+
+Objects can have metadata, which are key-value pairs defined by the system or the user. We can also add tags to objects for organization purposes. Finally, S3 is supports versioning (if enabled, in which case, objects will also have a version ID.).
+
+Users can access S3 resources in two ways:
+1. Explicitly assign permissions (or roles) to users or groups of users through IAM; or
+2. Assign a Bucket Policy to the bucket in question.
+
+### Replication
+We can set up Replication Rules to make sure that the content in an S3 bucket is replicated in another bucket (even if the other bucket belongs to a different AWS account). To do so, we must enable versioning on both buckets and then set up a Replication Rule. This is useful if you want to sync two buckets (to reduce latency, for example.).
+
+### Storage Classes

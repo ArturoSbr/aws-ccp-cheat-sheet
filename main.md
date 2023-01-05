@@ -78,3 +78,4 @@ Users can access S3 resources in two ways:
 We can set up Replication Rules to make sure that the content in an S3 bucket is replicated in another bucket (even if the other bucket belongs to a different AWS account). To do so, we must enable versioning on both buckets and then set up a Replication Rule. This is useful if you want to sync two buckets (to reduce latency, for example.).
 
 ### Storage Classes
+push test

@@ -79,3 +79,55 @@ We can set up Replication Rules to make sure that the content in an S3 bucket is
 
 ### Storage Classes
 push test
+
+## Databases and Analytics
+This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
+
+### Amazon RDS
+RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier.
+
+Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data).
+
+### Amazon ElastiCache
+ElastiCache is a managed in-memory database service that comes in handy whenever an application performs many reads. Instead of running the same query many times, the result is cached and made readily available for other calls that are querying the same data.
+
+### Amazon Aurora
+Aurora is similar to RDS except it only works with PostgreSQL and MySQL. It is slightly more expensive than RDS but offers better performance. Additionally, Aurora increases its storage automatically, so we do not have to provision additional storage. Aurora is not included in the free tier.
+
+### DynamoDB
+DynamoDB is a serverless solution (i.e., we do not need to instantiate a database) for low-latency NoSQL databases (i.e., databases that store unstructured data that is not relational). You skip straight into creating a table without the need to instantiate a database.
+
+DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively write in one region and it will be actively replicated in another region.
+
+### Redshift
+Redshift is a managed database service for Online Analytical Processing (OLAP) instead of OLTP. The data is written periodically; not continuously. It is used to host data warehouses for analytical processing. It can be integrated with BI tools such as AWS Quicksight or Tableau to create dashboards.
+
+### Elastic Map Reduce (EMR)
+EMR is used to create Hadoop, Spark, Presto and other types of clusters. These clusters can be composed of many EC2 instances and they all process the data together. EMR is a service that provisions and configures all the instances to create a cluster.
+
+### Athena
+Athena is a serverless solution that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
+
+### DynamoDB Accelerator (DAX)
+A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
+
+### DocumentDB
+In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB, which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
+
+### Neptune
+Amazon Neptune is a managed graph database service. It is useful for storing highly-connected datasets, such as social networks.
+
+### Quantum Ledger Database (QLDB)
+QLDB is a serverless solution used to store financial transactions using SQL. It is a centralized ledger that guarantees that once something is written to the database, it cannot be deleted or modified. It is centralized to comply with regulation.
+
+### Managed Blockchain
+Managed Blockchain is a serverless solution that allows parties to execute transactions without a centralized ledger. It is compatible with Hyperledger and Ethereum.
+
+### Glue
+Glue is a serverless ETL solution. It is the middle component between our raw data (stored in S3, RDS, etc.) and a data warehouse (Redshift). Glue allows us to run a script that transforms the raw data and loads it into the warehouse.
+
+### Database Migration Service (DMS)
+DMS is a service to safely migrate one database to another. The source database can remain active during the migration. DMS allows us to migrate from one engine to another (for example, PostgreSQL to Oracle SQL).
+
+### Quicksight
+Quicksight is a service to create dashboards. It can connect to RDS, Aurora, Athena, Redshift, S3, etc.

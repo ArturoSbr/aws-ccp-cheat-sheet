@@ -193,7 +193,7 @@ Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a
 
 ### Systems
 #### Systems Manager
-Hybrid service (works with cloud and on-premises infrastructure) that allows us to manage our EC2 systems. We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
+Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
 
 #### SSM Session Manager
 Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. 

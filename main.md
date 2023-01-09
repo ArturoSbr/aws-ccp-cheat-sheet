@@ -151,9 +151,42 @@ SageMaker is a manages service where we can do the whole process of developing a
 ## Other Compute Services
 
 ### Elastic Container Service (ECS)
+Used to launch Docker containers on EC2 instances. We must launch the EC2 instances in advance, and ECS will choose which instance to host the container on.
+
+### Fargate
+Fargate is a serverless service to launch Docker containers. In contrast to ECS, we do not need to worry about provisioning the infrastructure.
+
+### Elastic Container Registry (ECR)
+ECR is where we store our Docker images so that we can launch them on Fargate.
 
 ### Lambda
+Lambda is a fully serverless solution to run functions on-demand. In contrast to EC2, we do not need to have an instance running continuously to execute a function every time we need it. Instead, Lambda functions are hosted by AWS (we do not need to worry about the infrastructure) and they are not running continuously; they are event-driven (i.e., they only activate when an AWS trigger is detonated.). Scaling is fully automated (no need to define a load balancer or auto scaling group). We are billed for each call we make and the time it takes to run the function.
+
+### API Gateway
+API Gateway is a managed service to expose the API of a Lambda function so that the end user can invoke the function. It allows us to create, publish and maintain APIs in the cloud.
 
 ### Batch
+Batch is a managed service to run batch jobs packaged in Docker containers. Batch provisions optimized EC2 instances to run our batch jobs. The service runs on ECS and it auto-scales automatically.
 
 ### Lightsail
+Lightsail is a beginner-friendly alternative to EC2 instances. The services provides us with virtual servers, storage, databases and networking to deploy simple web-applications (because it does not auto-scale).
+
+## Infrastructure
+
+### CloudFormation
+CloudFormation is referred to as Infrastructure as Code. The service allows us to deploy infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together. Another advantage is that the process is not manual, so can use the same code to deploy the same infrastructure in different environments. Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
+
+### Cloud Development Kit (CDK)
+CDK is the same as CloudFormation except that we can configure our environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.
+
+### Elastic Beanstalk
+Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a single developer-friendly platform. Beanstalk handles instance configuration, the deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CF can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.
+
+### Deploying Code
+1. CodeDeploy: 
+2. CodeCommit
+3. CodeBuild
+4. CodePipeline
+5. CodeArtifact
+6. CodeStar
+7. Cloud9: Access an IDE from your web browser and open the same project from multiple clients to collaborate.

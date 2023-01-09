@@ -80,7 +80,7 @@ We can set up Replication Rules to make sure that the content in an S3 bucket is
 ### Storage Classes
 push test
 
-## Databases and Analytics
+## Databases, Analytics and AI
 This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
 
 ### Amazon RDS
@@ -123,11 +123,27 @@ QLDB is a serverless solution used to store financial transactions using SQL. It
 ### Managed Blockchain
 Managed Blockchain is a serverless solution that allows parties to execute transactions without a centralized ledger. It is compatible with Hyperledger and Ethereum.
 
-### Glue
-Glue is a serverless ETL solution. It is the middle component between our raw data (stored in S3, RDS, etc.) and a data warehouse (Redshift). Glue allows us to run a script that transforms the raw data and loads it into the warehouse.
-
 ### Database Migration Service (DMS)
 DMS is a service to safely migrate one database to another. The source database can remain active during the migration. DMS allows us to migrate from one engine to another (for example, PostgreSQL to Oracle SQL).
 
+### Glue
+Glue is a serverless ETL solution. It is the middle component between our raw data (stored in S3, RDS, etc.) and a data warehouse (Redshift). Glue allows us to run a script that transforms the raw data and loads it into the warehouse.
+
 ### Quicksight
 Quicksight is a service to create dashboards. It can connect to RDS, Aurora, Athena, Redshift, S3, etc.
+
+### SageMaker
+SageMaker is a manages service where we can do the whole process of developing and deploying a model. In SageMaker we can gather data, label it, train a model and deploy it. We do not have to worry about instantiating servers to train or receive calls because they are all managed by SageMaker.
+
+### Pre-trained AI Services
+1. Rekognition: Face detection, labeling, celebrity recognition.
+2. Transcribe: Audio to text.
+3. Polly: Text to audio.
+4. Translate: Translate to another language.
+5. Lex: Understand chats/calls to build a bot that users can talk to.
+6. Connect: Create contact flows to set up a virtual contact center (hand in hand with Lex).
+7. Comprehend: Get insights from natural language (sentiment, purpose of a sentence, etc.).
+8. Kendra: We input documents with information and the user can ask questions to Kendra (i.e., where is the bathroom?).
+9. Personalize: Real-time recommendation system for our applications.
+10. Textract: Extract text from scanned documents.
+11. Forecast: Predict future values of time series.

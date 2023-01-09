@@ -2,7 +2,7 @@
 This markdown document contains the main concepts that you'll be tested on when taking the AWS Certified Cloud Practitioner (CCP) exam.
 
 ## Identity Access Management (IAM)
-IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be inherited by entities. They are necessary for services that run actions on our behalf (like EC2).
+IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be attached to entities. They are necessary for services that run actions on our behalf (like EC2).
 
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
@@ -183,10 +183,20 @@ CDK is the same as CloudFormation except that we can configure our environment u
 Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a single developer-friendly platform. Beanstalk handles instance configuration, the deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CF can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.
 
 ### Deploying Code
-1. CodeDeploy: 
-2. CodeCommit
-3. CodeBuild
-4. CodePipeline
-5. CodeArtifact
-6. CodeStar
-7. Cloud9: Access an IDE from your web browser and open the same project from multiple clients to collaborate.
+1. CodeDeploy: Service that allows us to deploy or upgrade our applications. We install an agent that guides us 
+2. CodeCommit: AWS's proprietary version of GitHub.
+3. CodeBuild: Service that allows us to compile, test and package our code in the cloud. The final package is executable by CodeDeploy.
+4. CodePipeline: Allows us to automate the steps for pushing code to production (for example, code, build, test, provision and deploy.).
+5. CodeArtifact: Artifact management system which acts as a place where we can store and retrieve code dependencies.
+6. CodeStar: PaaS that unifies all the previous services (unified UI )
+7. Cloud9: Cloud IDE that can be accessed from your web browser to open the same project from multiple clients to collaborate.
+
+### Systems
+#### Systems Manager
+Hybrid service (works with cloud and on-premises infrastructure) that allows us to manage our EC2 systems. We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
+
+#### SSM Session Manager
+Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. 
+
+#### OpsWorks
+Server configuration with Chef and Puppet (like SSM but for these technologies).

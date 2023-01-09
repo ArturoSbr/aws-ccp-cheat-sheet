@@ -147,3 +147,13 @@ SageMaker is a manages service where we can do the whole process of developing a
 9. Personalize: Real-time recommendation system for our applications.
 10. Textract: Extract text from scanned documents.
 11. Forecast: Predict future values of time series.
+
+## Other Compute Services
+
+### Elastic Container Service (ECS)
+
+### Lambda
+
+### Batch
+
+### Lightsail

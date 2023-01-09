@@ -183,7 +183,7 @@ CDK is the same as CloudFormation except that we can configure our environment u
 Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a single developer-friendly platform. Beanstalk handles instance configuration, the deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CF can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.
 
 ### Deploying Code
-1. CodeDeploy: Service that allows us to deploy or upgrade our applications. We install an agent that guides us 
+1. CodeDeploy: Automate software deployments to a hybrid mix of servers (EC2 or on-premises). Each instance must have an agent installed.
 2. CodeCommit: AWS's proprietary version of GitHub.
 3. CodeBuild: Service that allows us to compile, test and package our code in the cloud. The final package is executable by CodeDeploy.
 4. CodePipeline: Allows us to automate the steps for pushing code to production (for example, code, build, test, provision and deploy.).

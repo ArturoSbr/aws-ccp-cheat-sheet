@@ -123,6 +123,9 @@ A fully managed service that caches common requests (like ElastiCache but especi
 
 DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively write in one region and it will be actively replicated in another region.
 
+### DocumentDB
+In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
+
 ### Redshift
 Redshift is a managed database service for Online Analytical Processing (OLAP) instead of OLTP. The data is written periodically; not continuously. It is used to host data warehouses for analytical processing. It can be integrated with BI tools such as AWS Quicksight or Tableau to create dashboards.
 
@@ -131,9 +134,6 @@ EMR is used to create Hadoop, Spark, Presto and other types of clusters. These c
 
 ### Athena
 Athena is a serverless solution that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
-
-### DocumentDB
-In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB, which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
 
 ### Neptune
 Amazon Neptune is a managed graph database service. It is useful for storing highly-connected datasets, such as social networks.

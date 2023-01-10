@@ -118,6 +118,9 @@ Aurora is similar to RDS except it only works with PostgreSQL and MySQL. It is s
 ### DynamoDB
 DynamoDB is a serverless solution (i.e., we do not need to instantiate a database) for low-latency NoSQL databases (i.e., databases that store unstructured data that is not relational). You skip straight into creating a table without the need to instantiate a database.
 
+### DynamoDB Accelerator (DAX)
+A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
+
 DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively write in one region and it will be actively replicated in another region.
 
 ### Redshift
@@ -128,9 +131,6 @@ EMR is used to create Hadoop, Spark, Presto and other types of clusters. These c
 
 ### Athena
 Athena is a serverless solution that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
-
-### DynamoDB Accelerator (DAX)
-A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
 
 ### DocumentDB
 In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB, which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
@@ -212,7 +212,7 @@ Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a
 6. CodeStar: PaaS that unifies all the previous services (unified UI )
 7. Cloud9: Cloud IDE that can be accessed from your web browser to open the same project from multiple clients to collaborate.
 
-### Systems
+### Managing Fleets of Servers
 #### Systems Manager
 Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
 
@@ -221,4 +221,5 @@ Start a secure shell on EC2 an on-premises servers through SSM. It is safer beca
 
 #### OpsWorks
 Server configuration with Chef and Puppet (like SSM but for these technologies).
-=======
+
+## 

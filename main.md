@@ -2,7 +2,7 @@
 This markdown document contains the main concepts that you'll be tested on when taking the AWS Certified Cloud Practitioner (CCP) exam.
 
 ## Identity Access Management (IAM)
-IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be inherited by entities. They are necessary for services that run actions on our behalf (like EC2).
+IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be attached to entities. They are necessary for services that run actions on our behalf (like EC2).
 
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
@@ -101,3 +101,124 @@ S3 Glacier is a storage class meant for archiving data. There is a cost for stor
 ### S3 Intelligent-Tiering
 A service that monitors how often you access your data and moves objects from one tier to another to minimize your costs. There are no retrieval charges in S3 Intelligent-Tiering, but there is a small fee for monitoring the usage of your data.
 
+## Databases, Analytics and AI
+This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
+
+### Amazon RDS
+RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier.
+
+Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data).
+
+### Amazon ElastiCache
+ElastiCache is a managed in-memory database service that comes in handy whenever an application performs many reads. Instead of running the same query many times, the result is cached and made readily available for other calls that are querying the same data.
+
+### Amazon Aurora
+Aurora is similar to RDS except it only works with PostgreSQL and MySQL. It is slightly more expensive than RDS but offers better performance. Additionally, Aurora increases its storage automatically, so we do not have to provision additional storage. Aurora is not included in the free tier.
+
+### DynamoDB
+DynamoDB is a serverless solution (i.e., we do not need to instantiate a database) for low-latency NoSQL databases (i.e., databases that store unstructured data that is not relational). You skip straight into creating a table without the need to instantiate a database.
+
+DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively write in one region and it will be actively replicated in another region.
+
+### Redshift
+Redshift is a managed database service for Online Analytical Processing (OLAP) instead of OLTP. The data is written periodically; not continuously. It is used to host data warehouses for analytical processing. It can be integrated with BI tools such as AWS Quicksight or Tableau to create dashboards.
+
+### Elastic Map Reduce (EMR)
+EMR is used to create Hadoop, Spark, Presto and other types of clusters. These clusters can be composed of many EC2 instances and they all process the data together. EMR is a service that provisions and configures all the instances to create a cluster.
+
+### Athena
+Athena is a serverless solution that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
+
+### DynamoDB Accelerator (DAX)
+A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
+
+### DocumentDB
+In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB, which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
+
+### Neptune
+Amazon Neptune is a managed graph database service. It is useful for storing highly-connected datasets, such as social networks.
+
+### Quantum Ledger Database (QLDB)
+QLDB is a serverless solution used to store financial transactions using SQL. It is a centralized ledger that guarantees that once something is written to the database, it cannot be deleted or modified. It is centralized to comply with regulation.
+
+### Managed Blockchain
+Managed Blockchain is a serverless solution that allows parties to execute transactions without a centralized ledger. It is compatible with Hyperledger and Ethereum.
+
+### Database Migration Service (DMS)
+DMS is a service to safely migrate one database to another. The source database can remain active during the migration. DMS allows us to migrate from one engine to another (for example, PostgreSQL to Oracle SQL).
+
+### Glue
+Glue is a serverless ETL solution. It is the middle component between our raw data (stored in S3, RDS, etc.) and a data warehouse (Redshift). Glue allows us to run a script that transforms the raw data and loads it into the warehouse.
+
+### Quicksight
+Quicksight is a service to create dashboards. It can connect to RDS, Aurora, Athena, Redshift, S3, etc.
+
+### SageMaker
+SageMaker is a manages service where we can do the whole process of developing and deploying a model. In SageMaker we can gather data, label it, train a model and deploy it. We do not have to worry about instantiating servers to train or receive calls because they are all managed by SageMaker.
+
+### Pre-trained AI Services
+1. Rekognition: Face detection, labeling, celebrity recognition.
+2. Transcribe: Audio to text.
+3. Polly: Text to audio.
+4. Translate: Translate to another language.
+5. Lex: Understand chats/calls to build a bot that users can talk to.
+6. Connect: Create contact flows to set up a virtual contact center (hand in hand with Lex).
+7. Comprehend: Get insights from natural language (sentiment, purpose of a sentence, etc.).
+8. Kendra: We input documents with information and the user can ask questions to Kendra (i.e., where is the bathroom?).
+9. Personalize: Real-time recommendation system for our applications.
+10. Textract: Extract text from scanned documents.
+11. Forecast: Predict future values of time series.
+
+## Other Compute Services
+
+### Elastic Container Service (ECS)
+Used to launch Docker containers on EC2 instances. We must launch the EC2 instances in advance, and ECS will choose which instance to host the container on.
+
+### Fargate
+Fargate is a serverless service to launch Docker containers. In contrast to ECS, we do not need to worry about provisioning the infrastructure.
+
+### Elastic Container Registry (ECR)
+ECR is where we store our Docker images so that we can launch them on Fargate.
+
+### Lambda
+Lambda is a fully serverless solution to run functions on-demand. In contrast to EC2, we do not need to have an instance running continuously to execute a function every time we need it. Instead, Lambda functions are hosted by AWS (we do not need to worry about the infrastructure) and they are not running continuously; they are event-driven (i.e., they only activate when an AWS trigger is detonated.). Scaling is fully automated (no need to define a load balancer or auto scaling group). We are billed for each call we make and the time it takes to run the function.
+
+### API Gateway
+API Gateway is a managed service to expose the API of a Lambda function so that the end user can invoke the function. It allows us to create, publish and maintain APIs in the cloud.
+
+### Batch
+Batch is a managed service to run batch jobs packaged in Docker containers. Batch provisions optimized EC2 instances to run our batch jobs. The service runs on ECS and it auto-scales automatically.
+
+### Lightsail
+Lightsail is a beginner-friendly alternative to EC2 instances. The services provides us with virtual servers, storage, databases and networking to deploy simple web-applications (because it does not auto-scale).
+
+## Infrastructure
+
+### CloudFormation
+CloudFormation is referred to as Infrastructure as Code. The service allows us to deploy infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together. Another advantage is that the process is not manual, so can use the same code to deploy the same infrastructure in different environments. Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
+
+### Cloud Development Kit (CDK)
+CDK is the same as CloudFormation except that we can configure our environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.
+
+### Elastic Beanstalk
+Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a single developer-friendly platform. Beanstalk handles instance configuration, the deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CF can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.
+
+### Deploying Code
+1. CodeDeploy: Automate software deployments to a hybrid mix of servers (EC2 or on-premises). Each instance must have an agent installed.
+2. CodeCommit: AWS's proprietary version of GitHub.
+3. CodeBuild: Service that allows us to compile, test and package our code in the cloud. The final package is executable by CodeDeploy.
+4. CodePipeline: Allows us to automate the steps for pushing code to production (for example, code, build, test, provision and deploy.).
+5. CodeArtifact: Artifact management system which acts as a place where we can store and retrieve code dependencies.
+6. CodeStar: PaaS that unifies all the previous services (unified UI )
+7. Cloud9: Cloud IDE that can be accessed from your web browser to open the same project from multiple clients to collaborate.
+
+### Systems
+#### Systems Manager
+Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
+
+#### SSM Session Manager
+Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. 
+
+#### OpsWorks
+Server configuration with Chef and Puppet (like SSM but for these technologies).
+=======

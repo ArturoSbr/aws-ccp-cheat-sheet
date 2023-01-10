@@ -121,7 +121,11 @@ DynamoDB is a serverless solution (i.e., we do not need to instantiate a databas
 ### DynamoDB Accelerator (DAX)
 A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
 
-DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively write in one region and it will be actively replicated in another region.
+DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively read/write in one region and it will be actively replicated in another region.
+
+Active/Passive meaning:
+- Active: allows read/writes.
+- Passive: Only allows reads.
 
 ### DocumentDB
 In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
@@ -222,4 +226,32 @@ Start a secure shell on EC2 an on-premises servers through SSM. It is safer beca
 #### OpsWorks
 Server configuration with Chef and Puppet (like SSM but for these technologies).
 
-## 
+##  Global Infrastructure
+The idea of deploying a global application is to host it in multiple regions to reduce latency for users around the world as well as to increase failover to other regions in case of attacks or disasters.
+
+### Route 53
+Route 53 is a managed DNS service. It allows us to create records that map domain names to IP addresses. For example, clients can request data from `http://MyDomain.com` and Route 53 will reply to them with the IP address where our app is hosted so that they can request data directly from the host's IP.
+
+Route 53 allows us to configure Routing Policies.
+1. Simple RP: No health checks. Client accesses domain and Route 53 responds with the host's IP.
+2. Weighted RP: Distribute traffic to multiple EC2 instances. Route 53 redirects traffic according to the weights we configure (for example, 50% traffic to instance 1, 30% to instance 2 and 20% to instance 3.).
+3. Latency RP: Redirect traffic to the closes host. Route 53 checks the location of the client and responds with the IP of the host closest to them.
+4. Failover RP: Route 53 can do health checks on a primary EC2 instance and will redirect all traffic to a failover instance if the primary fails.
+
+### CloudFront
+CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our app in multiple edge locations or to cache our app's content at edge locations. This greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall to protect our app against DDoS attacks. CloudFront connects to S3 buckets and HTTP servers (called "origins"). It stores requests in local caches and delivers the cached content to users close by. The origins can be protected using Origin Access Control and S3 Bucket Policies.
+
+### S3 Transfer Accelerator
+S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
+
+### Global Accelerator
+Global Accelerator allows clients to connect to edge locations and routes the traffic through the AWS private network. It is different to S3 Transfer Accelerator because it works with other services apart from S3. For example, we can set up an ALB in Germany and users can interact with our app through an edge location which routes the traffic directly to the ALB through the private network. Once again, the content is not cached. The service also integrates with Shield for DDoS protection.
+
+### Outposts
+Outposts are AWS server racks that AWS installs in your company's premises so that you can use AWS as if you were in the cloud, but the services are running locally (from the racks installed). For example, if you start an EC2 instance in an outpost, it will behave the same way as before, but it will be hosted from within the company's premises. The users are now responsible for the physical security of the racks, but it gives us low-latency and our data never leaves our premises.
+
+### WaveLength
+Deploy infrastructure on nodes from the 5G network. This is like deploying infrastructure on edge locations, except the nodes are owned by a 5G telecom carrier instead of AWS. For example, we can start an EC2 instance in a wavelength zone, which means that the server will be hosted in the carrier's data center in that node. It is used for ultra low-latency applications, such as gaming.
+
+### Local Zones
+Local Zones allow us to create subnets so that we can add an AZ from one region to another region. It is useful to create "custom regions".

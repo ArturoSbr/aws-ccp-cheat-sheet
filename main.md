@@ -78,7 +78,28 @@ Users can access S3 resources in two ways:
 We can set up Replication Rules to make sure that the content in an S3 bucket is replicated in another bucket (even if the other bucket belongs to a different AWS account). To do so, we must enable versioning on both buckets and then set up a Replication Rule. This is useful if you want to sync two buckets (to reduce latency, for example.).
 
 ### Storage Classes
-push test
+There are multiple storage classes which vary in pricing and retrieval time.
+
+#### S3 Standard
+Storage class used for data that is frequently accessed and needs to be available with low latency. The data is stored in multiple AZs, so it can endure AZ failures. Retrieving data is free.
+
+#### S3 Infrequent Access (S3 IA)
+Storage class used for data that is not accessed frequently but still needs fast access when needed. It is less expensive than S3 Standard and is also available in multiple AZs. There is a cost per GB retrieved and the minimum storage duration is 30 days.
+
+S3 One-Zone Infrequent Access is the same as S3 IA except that it is only available in a single AZ. The data is lost if the AZ is destroyed.
+
+#### S3 Glacier
+S3 Glacier is a storage class meant for archiving data. There is a cost for storage size as well as for retrieving data.
+
+1. S3 Glacier Instant Retrieval: For data that is accessed every quarter. Retrieve data in milliseconds. Minimum storage duration is 90 days.
+2. S3 Glacier Flexible Retrieval: For data that is accessed once or twice a year. Retrieval time varies between one minute and 12 hours. Minimum storage duration is 90 days.
+    a. Expedited: One to five minutes.
+    b. Standard: Three to five hours.
+    c. Buld: Five to twelve hours (no retrieval cost).
+3. S3 Glacier Deep Archive: For data that is accessed less than once a year. Retrieval time varies between 12 and 48 hours. Minimum storage duratino is 180 days.
+
+### S3 Intelligent-Tiering
+A service that monitors how often you access your data and moves objects from one tier to another to minimize your costs. There are no retrieval charges in S3 Intelligent-Tiering, but there is a small fee for monitoring the usage of your data.
 
 ## Databases, Analytics and AI
 This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
@@ -200,3 +221,4 @@ Start a secure shell on EC2 an on-premises servers through SSM. It is safer beca
 
 #### OpsWorks
 Server configuration with Chef and Puppet (like SSM but for these technologies).
+=======

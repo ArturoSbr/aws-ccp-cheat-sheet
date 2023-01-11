@@ -215,6 +215,7 @@ Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a
 5. CodeArtifact: Artifact management system which acts as a place where we can store and retrieve code dependencies.
 6. CodeStar: PaaS that unifies all the previous services (unified UI )
 7. Cloud9: Cloud IDE that can be accessed from your web browser to open the same project from multiple clients to collaborate.
+8. CodeGuru: ML-powered service that can do automated code reviews (CodeGuru Reviewer) and performance recommendations (CodeGuru Profiler).
 
 ### Managing Fleets of Servers
 #### Systems Manager
@@ -266,7 +267,7 @@ SQS is a serverless service that allows us to decouple our applications by putti
 
 For example, the producers can receive many requests from clients and scale with an ASG. The messages are sent to a queue, which routes them onto the consumer instances. The benefit of doing this is that consumers can have an independent ASG, which is why querying messages is referred to as decoupling our applications.
 
-### Simple Notification Service
+### Simple Notification Service (SNS)
 SNS is used to send one message to multiple services (one to many). It is different from SQS because the relationship is one to one in SQS.
 
 SNS decouples applications by sending a message to an SNS Topic. These messages are sent by SNS "publishers", and the receivers are called "subscribers", which get all the messages sent to a topic. Examples of SNS subscribers are Lambda functions, Kinesis Streams, an SQS, HTTP endpoints, etc.
@@ -278,14 +279,34 @@ SQS and SNS are proprietary message brokers. MQ is a managed service to decouple
 Kinesis is a serverless service used to ingest data with low-latency from many sources. Kinesis Firehose is a complimentary service to load these data points to S3, Redshift, etc. Kinesis Data Analytics can be used to perform real-time analytics on data streams using SQL. Kinesis Video Streams is used to monitor video streams in real-time.
 
 ### CloudWatch
-CloudWatch is a monitoring serviced used to track metrics, logs and create alerts.
+CloudWatch is a monitoring service used to track metrics, logs and trigger alerts and actions.
 
 #### Metrics
-CloudWatch Metrics is used to monitor metrics from any service on AWS. For example, we can monitor the CPU utilization of our EC2 instances over time. We can put these metrics in a CloudWatch dashboard to visualize their evolution over time.
+CloudWatch Metrics is used to monitor metrics from any service on AWS. For example, we can monitor the CPU utilization of our EC2 instances over time. We can visualize the evolution of any metric over time in a CloudWatch Metrics dashboard.
 
 #### Alarms
-CloudWatch Alarms are alarms sent when a CloudWatch metrics passes a pre-established metric. These alarms trigger actions or send notifications. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
+CloudWatch Alarms are notifications that get triggered when a CloudWatch Metric passes a pre-established threshold. Alarms can trigger actions or send notifications. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
 
-To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated.
+To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated. Billing Alarms are only available in us-east-1.
 
 #### Logs
+CloudWatch logs allow us to monitor logs in real-time. CloudWatch logs can be collected from Elastic Beanstalk, ECS, Lambda functions, CloudTrail, Route 53 and CloudWatch log agents installed on EC2 instances. By default, EC2 instances do not create logs, so we need to install a CloudWatch log agent and select the logs we want to push into CloudWatch. To do this, we need to attach an IAM Role to our instance to allow it to write to CloudWatch.
+
+### EventBridge
+EventBridge enables us to create rules to schedule cron jobs (run services periodically) or run jobs based on a service's usage pattern (i.e., set up a rule that sends an SNS to a topic whenever the root user logs in.). It is different to SNS because ???
+
+### CloudTrail
+CloudTrail provides you with a history of all the actions and API calls made within our AWS account. It is useful to find the answer to who, what and when questions.
+
+If we want to retain these logs for long periods of time, we can send CloudTrail actions to CloudWatch Logs or an S3 bucket.
+
+### X-Ray
+It is hard to trace bugs when we have an application that is made up of many decoupled applications. X-Ray allows us to visualize the actions in our application and makes it easy to trace bugs.
+
+### Health Dashboard
+
+1. Service health: Shows the daily health of all the services in every region.
+2. Your account health: Provides personalized information regarding issues of services that affect your applications.
+
+## Vitual Private Cloud (VPC)
+

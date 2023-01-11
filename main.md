@@ -255,3 +255,24 @@ Deploy infrastructure on nodes from the 5G network. This is like deploying infra
 
 ### Local Zones
 Local Zones allow us to create subnets so that we can add an AZ from one region to another region. It is useful to create "custom regions".
+
+## Cloud Integrations and Monitoring
+This section covers services that can be used to integrate two apps together so they can communicate. It also covers the monitoring of applications (logs, events, etc.).
+
+### Simple Queuing Service (SQS)
+There are two ways that two apps can communicate with one another. The first is to have them post and receive requests synchronously, which means that both ends are always listening. This can be problematic when demand spikes (because our processing infrastructure has to scale very quickly). The second way is called asynchronous communication, which consists of putting an intermediary between both applications to regulate the flow of traffic.
+
+SQS is a serverless service that allows us to decouple our applications by putting a queue between both applications. This way, when the producers send many requests, they are stored in a queue and the consumers can poll the messages to start processing them one by one. Wait time will be long, but it will not overwhelm our backend. The queue does not have a limit and the queued messages can stay there for up to 14 days. Messages are deleted after they are read by consumers, and they can share the workload by scaling horizontally.
+
+For example, the producers can receive many requests from clients and scale with an ASG. The messages are sent to a queue, which routes them onto the consumer instances. The benefit of doing this is that consumers can have an independent ASG, which is why querying messages is referred to as decoupling our applications.
+
+### Simple Notification Service
+SNS is used to send one message to multiple services (one to many). It is different from SQS because the relationship is one to one in SQS.
+
+SNS decouples applications by sending a message to an SNS Topic. These messages are sent by SNS "publishers", and the receivers are called "subscribers", which get all the messages sent to a topic. Examples of SNS subscribers are Lambda functions, Kinesis Streams, an SQS, HTTP endpoints, etc.
+
+### MQ
+SQS and SNS are proprietary message brokers. MQ is a managed service to decouple applications using open protocols, such as MQTT, AMQP, etc. It is compatible with two pub-sub services: RabbitMQ and ActiveMQ. It is useful in case we have physical infrastructure and are migrating to the cloud (we can use MQ and keep using our streams instead of re-engineering everything to make it compatible with SQS or SNS.).
+
+### Kinesis
+Kinesis is a serverless service used to ingest data with low-latency from many sources. Kinesis Firehose is a complimentary service to load these data points to S3, Redshift, etc. Kinesis Data Analytics can be used to perform real-time analytics on data streams using SQL. Kinesis Video Streams is used to monitor video streams in real-time.

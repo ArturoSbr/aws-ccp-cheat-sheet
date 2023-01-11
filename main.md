@@ -276,3 +276,16 @@ SQS and SNS are proprietary message brokers. MQ is a managed service to decouple
 
 ### Kinesis
 Kinesis is a serverless service used to ingest data with low-latency from many sources. Kinesis Firehose is a complimentary service to load these data points to S3, Redshift, etc. Kinesis Data Analytics can be used to perform real-time analytics on data streams using SQL. Kinesis Video Streams is used to monitor video streams in real-time.
+
+### CloudWatch
+CloudWatch is a monitoring serviced used to track metrics, logs and create alerts.
+
+#### Metrics
+CloudWatch Metrics is used to monitor metrics from any service on AWS. For example, we can monitor the CPU utilization of our EC2 instances over time. We can put these metrics in a CloudWatch dashboard to visualize their evolution over time.
+
+#### Alarms
+CloudWatch Alarms are alarms sent when a CloudWatch metrics passes a pre-established metric. These alarms trigger actions or send notifications. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
+
+To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated.
+
+#### Logs

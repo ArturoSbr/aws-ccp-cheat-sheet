@@ -311,54 +311,27 @@ It is hard to trace bugs when we have an application that is made up of many dec
 1. Service health: Shows the daily health of all the services in every region.
 2. Your account health: Provides personalized information regarding issues of services that affect your applications.
 
-## Virtual Private Cloud (VPC) and Security
+## Virtual Private Cloud (VPC)
 VPCs are partitions of the AWS cloud where we can deploy our infrastructure. The following diagram shows the basic structure of the default VPC.
 
 ![Default VPC structure](https://github.com/ArturoSbr/aws-ccp-cheat-sheet/blob/main/figures/vpc.png)
 
+- Virtual Private Cloud: Tied to an AWS region.
+- Subnets: Tied to an AZ.
+- Route Tables: Routes used to connect subnets together or connect to the internet.
+- NACL: Subnet-level firewall with a list of allowed and denied IPs.
+- Security Groups: Instance-level firewall with a list of allowed IPs or other SGs.
+
 ### VPC Flow Logs
-Network traffic logs of IP addresses that are trying to communicate with your VPC.
-
-### VPC Peering
-Connect two VPCs together. The connections are not transitive. For example, if A is peered with B and B is peered with C, we need to create a connection between A and C manually.
-
-### NACL
-Subnet-level firewall. It is a list of IP addresses that can communicate with a subnet.
-
-### Security Groups
-Instance-level firewall. It is a list of IP addresses or other SGs that can communicate with our instances.
+Logs to monitor IP traffic coming in our out of our VPC (allowed or denied).
 
 ### Connections
-#### Site to Site VPN
-#### Client VPN
-#### Direct Connect
-#### Transit Gateway
+1. VPC Endpoints: Allow us to connect to AWS resources through a private network (more secure, reduced latency).
+2. VPC Peering: Connect a few VPCs together using the AWS private network to make them behave a single network. The connections are not transitive! For example, if A is peered with B and B is peered with C, we need to create a connection between A and C manually.
+3. VPC PrivateLink: Connect many VPCs together (like VPC Peering, but for a larger network).
+4. Site to Site VPN: Encrypted connection from your on-premises data center to your AWS VPC though the public internet.
+5. Direct Connect: Create a physical connection to AWS.
+6. Client VPN: Connect your computer to your VPC so that you can connect to EC2 instances through their private IPs (instead of using their public IPs, which is less secure).
+7. Transit Gateway: Service to connect many VPCs and on-premises data centers through a "hub and spokes" topology (TGW in the center).
 
-### DDoS Protection
-1. WAF
-2. Shield
-
-### Penetration Testing
-
-### Encryption
-
-### Certificate Management (ACM)
-
-### Secrets Manager
-
-### Artifact
-
-### GuardDuty
-
-### Inspector
-
-### Detective
-
-### Config
-
-### Macie
-
-### Security Hub
-
-### Abuse
-
+## Security

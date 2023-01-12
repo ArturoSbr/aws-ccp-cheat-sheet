@@ -6,6 +6,9 @@ IAM is a global service that allows us to manage users, groups, policies and rol
 
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
+### Root User Privileges
+
+
 ## Elastic Compute Cloud (EC2)
 EC2 is a services that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc.
 
@@ -308,5 +311,54 @@ It is hard to trace bugs when we have an application that is made up of many dec
 1. Service health: Shows the daily health of all the services in every region.
 2. Your account health: Provides personalized information regarding issues of services that affect your applications.
 
-## Vitual Private Cloud (VPC)
+## Virtual Private Cloud (VPC) and Security
+VPCs are partitions of the AWS cloud where we can deploy our infrastructure. The following diagram shows the basic structure of the default VPC.
+
+![Default VPC structure](https://github.com/ArturoSbr/aws-ccp-cheat-sheet/blob/main/figures/vpc.png)
+
+### VPC Flow Logs
+Network traffic logs of IP addresses that are trying to communicate with your VPC.
+
+### VPC Peering
+Connect two VPCs together. The connections are not transitive. For example, if A is peered with B and B is peered with C, we need to create a connection between A and C manually.
+
+### NACL
+Subnet-level firewall. It is a list of IP addresses that can communicate with a subnet.
+
+### Security Groups
+Instance-level firewall. It is a list of IP addresses or other SGs that can communicate with our instances.
+
+### Connections
+#### Site to Site VPN
+#### Client VPN
+#### Direct Connect
+#### Transit Gateway
+
+### DDoS Protection
+1. WAF
+2. Shield
+
+### Penetration Testing
+
+### Encryption
+
+### Certificate Management (ACM)
+
+### Secrets Manager
+
+### Artifact
+
+### GuardDuty
+
+### Inspector
+
+### Detective
+
+### Config
+
+### Macie
+
+### Security Hub
+
+### Abuse
 

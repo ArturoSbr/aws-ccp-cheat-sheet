@@ -335,3 +335,40 @@ Logs to monitor IP traffic coming in our out of our VPC (allowed or denied).
 7. Transit Gateway: Service to connect many VPCs and on-premises data centers through a "hub and spokes" topology (TGW in the center).
 
 ## Security
+### DDoS Protection
+1. Shield Standard: Free DDoS protection for your websites and applications.
+2. Shield Advanced: Premium DDoS with 24/7 surveillance.
+3. Web Application Firewall (WAF): Filter requests based on rules (e.g., only one request per 10 minutes).
+
+### Key Management Service (KMS)
+AWS manages the keys and our job is to define who can access them to decrypt encrypted services. For example, we can encrypt an RDS database and select users that can access the keys to decrypt it.
+
+### Hardware Security Modules (HSM)
+AWS provisions hardware for encrypting data and our job is to use it to manage encryption keys.
+
+### Types of Customer Master Keys (CMK)
+1. Customer Managed CMK: Keys that are created and managed by the user.
+2. CloudHSM Keys: Keys created with an HMS device.
+3. AWS Managed CMK: Keys that are created and managed by AWS on our behalf.
+4. AWS Owned CMK: Keys owned by AWS that we cannot even see.
+
+### Certificate Manager (ACM)
+Service to deploy SSL/TLS certificates. It can be attached to an ALB so that the user can communicate with it via HTTPS.
+
+### Secrets Manager
+Service to store secret access keys for RDS, Redshift, S3, etc. The secrets can be retrieved from applications (i.e., a python script) or the AWS CLI (that way we don't have to hardcode our keys into the code).
+
+### Artifact
+Portal where we can access the compliance documentation and agreements. For example, we can see the compliance reports made by third-party auditors, such as ISO certifications, PCI reports, etc. These reports are usually accessed to show that your company can adopt AWS without violating any regulations.
+
+### Macie
+Macie is a fully managed service that scans your data to detect sensitive data. When it finds sensitive data
+
+### GuardDuty
+Automated service that uses ML to discover threats. The service looks at your logs (CloudTrail, S3, etc.) to determine if something unusual is going on. It can be synced with EventBridge to send SNS notifications when the service finds something suspicious.
+
+### Inspector
+Run automated security assessments for EC2, ECR and Lambda functions. It will report its findings to the AWS Security Hub as well as EventBridge.
+
+### Config
+Config stores changes in the configuration of your AWS account and services over time (like source control but for configuration settings).

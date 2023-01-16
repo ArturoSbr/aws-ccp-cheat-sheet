@@ -250,7 +250,7 @@ Route 53 allows us to configure Routing Policies.
 CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our app in multiple edge locations or to cache our app's content at edge locations. This greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section). CloudFront connects to S3 buckets and HTTP servers (called "origins"). It stores requests in local caches and delivers the cached content to users close by. The origins can be protected using Origin Access Control and S3 Bucket Policies.
 
 ### S3 Transfer Accelerator
-S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
+Speed up client &rarr edge location &rarr S3 Bucket. S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
 
 ### Global Accelerator
 Global Accelerator allows clients to connect to edge locations and routes the traffic through the AWS private network. It is different to S3 Transfer Accelerator because it works with other services apart from S3. For example, we can set up an ALB in Germany and users can interact with our app through an edge location which routes the traffic directly to the ALB through the private network. Once again, the content is not cached. The service also integrates with Shield for DDoS protection.
@@ -392,3 +392,23 @@ SecurityHub is a centralized tool to automate security checks and manage the sec
 Abuse is a portal where we can report AWS resources that are being used for abusive or illegal purposes (spam, port scanning, DDoS attacks, hosting copyrighted content, etc.).
 
 ## Account Management and Billing
+### Organizations
+Organizations is a global service that allows us to link multiple AWS accounts into a single organization to get consolidated billing, volume discounts, share reserved resources and control permissions using Service Control Policies (SCP). It also allows us to automate the creation of AWS accounts (useful when a company sets up one account per department or employee).
+
+### Control Tower
+Control Tower runs on top of Organizations and it is a service to govern a multi-account AWS environment based on best practices. It allows us to automate the setup of AWS environments, detect policy violations and monitor account compliance using a dashboard. This is done by setting up a Landing Zone, where we add one Master Account, a Logging Account and an Audit Account. AWS recommends to manage Organization Units (OUs) via Control Tower and not within Organizations itself!
+
+### Pricing Models
+1. Pay as you go: Pay for what you use as you deploy new infrastructure.
+2. Reserve resources: More predictable budgets by reserving resources in advance for a predetermined amount of time.
+3. Volume discounts: Get better rates for using high volumes (such as in S3 or consolidated billing).
+4. AWS economies of scale: As AWS grows, they can offer better prices for us.
+
+### Free tier
+1. IAM
+2. VPC
+3. Consolidated billing
+4. EC2 t2.micro, S3, EBS, ELB, AWS Data Transfer, RDS
+5. CloudFormation, Elastic Beanstalk
+6. Autoscaling groups
+

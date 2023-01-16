@@ -7,7 +7,11 @@ IAM is a global service that allows us to manage users, groups, policies and rol
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
 ### Root User Privileges
-
+The root user is the account owner and has access to all of AWS. The root user has more permissions than even the highest-ranking admin. Some of the tasks that can only be performed by the root user are:
+1. Change account settings (name, email, root user password and root user access keys).
+2. Close account.
+3. Change AWS Support plan.
+4. Register in the AWS Marketplace.
 
 ## Elastic Compute Cloud (EC2)
 EC2 is a services that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc.
@@ -243,7 +247,7 @@ Route 53 allows us to configure Routing Policies.
 4. Failover RP: Route 53 can do health checks on a primary EC2 instance and will redirect all traffic to a failover instance if the primary fails.
 
 ### CloudFront
-CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our app in multiple edge locations or to cache our app's content at edge locations. This greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall to protect our app against DDoS attacks. CloudFront connects to S3 buckets and HTTP servers (called "origins"). It stores requests in local caches and delivers the cached content to users close by. The origins can be protected using Origin Access Control and S3 Bucket Policies.
+CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our app in multiple edge locations or to cache our app's content at edge locations. This greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section). CloudFront connects to S3 buckets and HTTP servers (called "origins"). It stores requests in local caches and delivers the cached content to users close by. The origins can be protected using Origin Access Control and S3 Bucket Policies.
 
 ### S3 Transfer Accelerator
 S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
@@ -335,24 +339,29 @@ Logs to monitor IP traffic coming in our out of our VPC (allowed or denied).
 7. Transit Gateway: Service to connect many VPCs and on-premises data centers through a "hub and spokes" topology (TGW in the center).
 
 ## Security
+
+### Penetration Testing
+We can attack our own infrastructure without asking for permission from AWS for the following services: EC2, ELB, Lamda functions, RDS, Aurora, CloudFront, NAT gateways, API gateways, Lightsail resources and Beanstalk environments. We cannot attack our infrastructure by flooding (DDoS, port flooding, etc.).
+
 ### DDoS Protection
 1. Shield Standard: Free DDoS protection for your websites and applications.
 2. Shield Advanced: Premium DDoS with 24/7 surveillance.
 3. Web Application Firewall (WAF): Filter requests based on rules (e.g., only one request per 10 minutes).
 
-### Key Management Service (KMS)
-AWS manages the keys and our job is to define who can access them to decrypt encrypted services. For example, we can encrypt an RDS database and select users that can access the keys to decrypt it.
+### Encryption
+#### Key Management Service (KMS)
+We use KMS to encrypt data and objects. AWS manages the keys and our job is to define who can access them to decrypt encrypted services. For example, we can encrypt an RDS database and select users that can access the keys to decrypt it.
 
-### Hardware Security Modules (HSM)
-AWS provisions hardware for encrypting data and our job is to use it to manage encryption keys.
+#### Cloud Hardware Security Modules (HSM)
+AWS provisions hardware for encrypting data and our job is to use it to create and manage encryption keys.
 
-### Types of Customer Master Keys (CMK)
+#### Types of Customer Master Keys (CMK)
 1. Customer Managed CMK: Keys that are created and managed by the user.
-2. CloudHSM Keys: Keys created with an HMS device.
+2. CloudHSM Keys: Keys created with an HMS device through CloudHSM.
 3. AWS Managed CMK: Keys that are created and managed by AWS on our behalf.
 4. AWS Owned CMK: Keys owned by AWS that we cannot even see.
 
-### Certificate Manager (ACM)
+### Amazon Certificate Manager (ACM)
 Service to deploy SSL/TLS certificates. It can be attached to an ALB so that the user can communicate with it via HTTPS.
 
 ### Secrets Manager
@@ -362,13 +371,24 @@ Service to store secret access keys for RDS, Redshift, S3, etc. The secrets can 
 Portal where we can access the compliance documentation and agreements. For example, we can see the compliance reports made by third-party auditors, such as ISO certifications, PCI reports, etc. These reports are usually accessed to show that your company can adopt AWS without violating any regulations.
 
 ### Macie
-Macie is a fully managed service that scans your data to detect sensitive data. When it finds sensitive data
+Macie is a fully managed service that scans your data to detect sensitive information. Macie notifies you via EventBridge when it discovers data that can be classified as sensitive.
 
 ### GuardDuty
-Automated service that uses ML to discover threats. The service looks at your logs (CloudTrail, S3, etc.) to determine if something unusual is going on. It can be synced with EventBridge to send SNS notifications when the service finds something suspicious.
+Automated service that uses ML to discover anomalies in your account. The service looks at your logs (CloudTrail, S3, etc.) to determine if something unusual is going on. It can be synced with EventBridge to send SNS notifications when the service finds something suspicious.
 
 ### Inspector
 Run automated security assessments for EC2, ECR and Lambda functions. It will report its findings to the AWS Security Hub as well as EventBridge.
 
+### Detective
+This service tracks the source of a security issue found by GuardDuty, Macie and SecurityHub.
+
 ### Config
-Config stores changes in the configuration of your AWS account and services over time (like source control but for configuration settings).
+Config stores changes in the configuration of your AWS account and services over time (like source control but for configuration settings). It can trigger SNS notifications to alert us of new changes. The service has to be enabled and is not free.
+
+### SecurityHub
+SecurityHub is a centralized tool to automate security checks and manage the security of multiple AWS accounts. It has a security dashboard that aggregates alerts from all the previous services. SecurityHub requires Config.
+
+### Abuse
+Abuse is a portal where we can report AWS resources that are being used for abusive or illegal purposes (spam, port scanning, DDoS attacks, hosting copyrighted content, etc.).
+
+## Account Management and Billing

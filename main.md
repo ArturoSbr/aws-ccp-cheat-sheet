@@ -112,7 +112,7 @@ A service that monitors how often you access your data and moves objects from on
 This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
 
 ### Amazon RDS
-RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier.
+RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier, but more complete databases can be billed hourly or reserved for one or three years.
 
 Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data).
 

@@ -20,7 +20,7 @@ EC2 is a services that allows us to rent virtual machines. We can choose the ope
 There are four options to rent EC2 instances.
 1. On-Demand: Most expensive, billed by seconds used, minimum time billed is 60 seconds.
 2. Reserved Instances: Commit to renting an instance for one or three years. Instance type, region, Availability Zone (AZ) and OS are fixed for this period. We get a discounted rate whenever we start an instance that matches the attributes of an active reserved instance.
-3. Savings Plan: Commit to an hourly spend commitment between one or three years (i.e., $0.15/hour for one year). Instance family and region remain fixed.
+3. Savings Plan: Commit to an hourly expenditure between one or three years (i.e., $0.15/hour for one year) in a region. Instance family (e.g., t2, t3 or m5) and region remain fixed. The cost of launching a t2.micro or a t2.xlarge are the same and it does not matter which AZ we launch it in.
 4. Spot Instances: Define a maximum price you are willing to pay and compare that against the market's spot price. If the spot price is greater than our threshold, we lose the instance.
 5. Dedicated Hosts: Reserve a physical server from AWS.
 
@@ -411,4 +411,6 @@ Control Tower runs on top of Organizations and it is a service to govern a multi
 4. EC2 t2.micro, S3, EBS, ELB, AWS Data Transfer, RDS
 5. CloudFormation, Elastic Beanstalk
 6. Autoscaling groups
+
+### Savings Plan
 

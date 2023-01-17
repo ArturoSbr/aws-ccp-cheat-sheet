@@ -434,7 +434,7 @@ Allows us to create more detailed reports than the Billing Dashboard. It is the 
 Allows us to create custom reports to understand our bills at a high level (hourly or monthly). It is useful to view our costs over time and forecast our usage and costs for up to 12 months. Cost Explorer also recommends us Savings Plans based on our usage.
 
 ### Budgets
-We can create budgets that send alarms when the actual costs or forecasted costs exceed our thresholds.
+We can create budgets that send alerts when the actual costs or forecasted costs exceed our thresholds (CloudWatch Billing Alarms does not alert you based on your forecasted costs!).
 
 ### Trusted Advisor
 Trusted Advisor runs checks on our account and recommend actions based on five categories:

@@ -294,7 +294,10 @@ CloudWatch Metrics is used to monitor metrics from any service on AWS. For examp
 #### Alarms
 CloudWatch Alarms are notifications that get triggered when a CloudWatch Metric passes a pre-established threshold. Alarms can trigger actions or send notifications. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
 
-To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated. Billing Alarms are only available in us-east-1.
+To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated.
+
+#### Billing Alarms
+Billing alarms are only available in us-east-1. It shows the worldwide costs from our AWS resources. We can set up email notifications if a metric goes over a threshold.
 
 #### Logs
 CloudWatch logs allow us to monitor logs in real-time. CloudWatch logs can be collected from Elastic Beanstalk, ECS, Lambda functions, CloudTrail, Route 53 and CloudWatch log agents installed on EC2 instances. By default, EC2 instances do not create logs, so we need to install a CloudWatch log agent and select the logs we want to push into CloudWatch. To do this, we need to attach an IAM Role to our instance to allow it to write to CloudWatch.
@@ -412,5 +415,74 @@ Control Tower runs on top of Organizations and it is a service to govern a multi
 5. CloudFormation, Elastic Beanstalk
 6. Autoscaling groups
 
-### Savings Plan
+### Cost Optimizer
+Cost Optimizer looks at our compute resources and determines if any of them are over or under-provisioned. The main goal is to reduce costs and improve performance by optimizing our resources.
 
+### Pricing Calculator
+Estimate the yearly cost for your architecture solution.
+
+### Billing Dashboard
+Shows a high-level dashboard with the costs of the current month. It breaks down the total monthly bill by service. It also shows the free tier usage limit, our month-to-date usage and the forecasted usage by the end of the month.
+
+### Cost Allocated Tags
+We can use cost allocation tags when launching new services to track our AWS costs. Some tags are applied automatically (e.g., createdBy: Elastic Beanstalk). We can also define our own tags (which come with the prefix `user:`), which will help us group costs by tag. We can manage tags using the Resource Groups & Tag Editor.
+
+### Cost and Usage Reports
+Allows us to create more detailed reports than the Billing Dashboard. It is the most granular breakdown of our bills. It shows the usage of each service by account and IAM users at an hourly or daily level. The reports can be analyzed with Athena, Redshift and QuickSight.
+
+### Cost Explorer
+Allows us to create custom reports to understand our bills at a high level (hourly or monthly). It is useful to view our costs over time and forecast our usage and costs for up to 12 months. Cost Explorer also recommends us Savings Plans based on our usage.
+
+### Budgets
+We can create budgets that send alarms when the actual costs or forecasted costs exceed our thresholds.
+
+### Trusted Advisor
+Trusted Advisor runs checks on our account and recommend actions based on five categories:
+1. Cost Optimization
+2. Performance
+3. Security
+4. Fault tolerance
+5. Service limits
+
+Trusted Advisor runs seven checks for free if we are on the Basic or Developer Support Plans:
+1. Check if root User MFA enabled
+2. Check if root user is being used
+3. Security Groups (check for unrestricted ports)
+4. S3 public buckets
+5. EBS public snapshots
+6. RDS public snapshots
+7. Service limits on many services (check if usage exceeds 80%)
+
+If you are subscribed to the Business or Enterprise Support Plans, you get the following checks:
+1. Set CloudWatch alarms when a limit is reached
+2. Programmatic access via AWS Support API
+
+### Support Plans
+#### Basic
+- Customer Service and access to AWS Communities
+- All seven free checks in Trusted Advisor
+- Personal Health Dashboard
+
+#### Developer
+- Business hours email support with Cloud Support Associates
+- Unlimited cases and one contact
+- General guidance support (< 24 hours)
+- System impaired (< 12 hours)
+
+
+#### Business
+- Full set of checks and API access to Trusted Advisor
+- 24/7 phone, email and chat support with Cloud Support Engineers (better than associates)
+- Unlimited cases and contacts
+- Production system impaired (< 4 hours)
+- Production system down (< 1 hour)
+
+#### Enterprise On-Ramp
+- Access to pool to technical account managers (better than engineers)
+- Concierge support team (billing and best practices)
+- Infrastructure reviews from experts
+- Business critical system down (< 30 minutes)
+
+#### Enterprise
+- Designated technical account manager (instead of a pool of TAMs)
+- Business critical system down (< 15 minutes)

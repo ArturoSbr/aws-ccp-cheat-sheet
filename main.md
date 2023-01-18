@@ -1,6 +1,11 @@
 # About this cheat sheet
 This markdown document contains the main concepts that you'll be tested on when taking the AWS Certified Cloud Practitioner (CCP) exam.
 
+## Multi-Factor Authentication (MFA)
+1. Virtual MFA Device: An app that shows a code that updates periodically.
+2. Hardware MFA Device: A physical device that generates new tokens periodically.
+3. U2F Key: A physical drive that contains a key.
+
 ## Identity Access Management (IAM)
 IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be attached to entities. They are necessary for services that run actions on our behalf (like EC2).
 
@@ -125,14 +130,15 @@ Aurora is similar to RDS except it only works with PostgreSQL and MySQL. It is s
 ### DynamoDB
 DynamoDB is a serverless solution (i.e., we do not need to instantiate a database) for low-latency NoSQL databases (i.e., databases that store unstructured data that is not relational). You skip straight into creating a table without the need to instantiate a database.
 
-### DynamoDB Accelerator (DAX)
-A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
-
-DynamoDB tables can be turned into Global Tables to allow synced read/writes in multiple regions. This is called active-active replication because we can actively read/write in one region and it will be actively replicated in another region.
+### DynamoDB Global Tables
+DynamoDB tables can be turned into Global Tables to allow <10 ms latency read/writes in multiple regions. This is called active-active replication because we can actively read/write in one region and it will be actively replicated in another region.
 
 Active/Passive meaning:
 - Active: allows read/writes.
 - Passive: Only allows reads.
+
+### DynamoDB Accelerator (DAX)
+A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
 
 ### DocumentDB
 In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
@@ -437,12 +443,14 @@ Allows us to create custom reports to understand our bills at a high level (hour
 We can create budgets that send alerts when the actual costs or forecasted costs exceed our thresholds (CloudWatch Billing Alarms does not alert you based on your forecasted costs!).
 
 ### Trusted Advisor
-Trusted Advisor runs checks on our account and recommend actions based on five categories:
-1. Cost Optimization
+Trusted Advisor is a tool that runs checks on our account and recommends actions to follow AWS best practices. It recommends actions based on five categories:
+1. Cost Optimization (it recommends you strategies to reduce your costs!)
 2. Performance
 3. Security
 4. Fault tolerance
 5. Service limits
+
+Some of the recommendations made by Trusted Advisor include terminating unused EC2 instances, unattached EBS volumes or any resources that are not being used.
 
 Trusted Advisor runs seven checks for free if we are on the Basic or Developer Support Plans:
 1. Check if root User MFA enabled

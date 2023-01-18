@@ -138,6 +138,8 @@ Aurora is similar to RDS except it only works with PostgreSQL and MySQL. It is s
 ### DynamoDB
 DynamoDB is a serverless solution (i.e., we do not need to instantiate a database) for low-latency NoSQL databases (i.e., databases that store unstructured data that is not relational). You skip straight into creating a table without the need to instantiate a database.
 
+DynamoDB has ultra-low latency retrieval (<10 ms) and can handle millions of requests per second. It also has a cheaper Infrequent Access tier for objects that are accessed infrequently.
+
 ### DynamoDB Global Tables
 DynamoDB tables can be turned into Global Tables to allow <10 ms latency read/writes in multiple regions. This is called active-active replication because we can actively read/write in one region and it will be actively replicated in another region.
 
@@ -146,7 +148,7 @@ Active/Passive meaning:
 - Passive: Only allows reads.
 
 ### DynamoDB Accelerator (DAX)
-A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB).
+A fully managed service that caches common requests (like ElastiCache but especially made to integrate with DynamoDB). Retrieval times < 1 ms.
 
 ### DocumentDB
 In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, DocumentDB is a proprietary version of mongoDB which is used to store JSON data. DocumentDB is like Aurora for No-SQL.
@@ -154,7 +156,7 @@ In the same way that Aurora is a proprietary version of PostgreSQL/MySQL, Docume
 ### Redshift
 Redshift is a managed database service for Online Analytical Processing (OLAP) instead of OLTP. The data is written periodically; not continuously. It is used to host data warehouses for analytical processing. It can be integrated with BI tools such as AWS Quicksight or Tableau to create dashboards.
 
-### Elastic Map Reduce (EMR)
+### Elastic MapReduce (EMR)
 EMR is used to create Hadoop, Spark, Presto and other types of clusters. These clusters can be composed of many EC2 instances and they all process the data together. EMR is a service that provisions and configures all the instances to create a cluster.
 
 ### Athena

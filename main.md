@@ -206,7 +206,7 @@ Lightsail is a beginner-friendly alternative to EC2 instances. The services prov
 ## Infrastructure
 
 ### CloudFormation
-CloudFormation is referred to as Infrastructure as Code. The service allows us to deploy infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together. Another advantage is that the process is not manual, so can use the same code to deploy the same infrastructure in different environments. Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
+CloudFormation is referred to as Infrastructure as Code. The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together. Another advantage is that the process is not manual, so we can use the same code to deploy the same infrastructure in different environments. Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
 
 ### Cloud Development Kit (CDK)
 CDK is the same as CloudFormation except that we can configure our environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.

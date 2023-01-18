@@ -116,6 +116,8 @@ A service that monitors how often you access your data and moves objects from on
 ## Databases, Analytics and AI
 This section covers some of the AWS services dedicated to databases, analytics and Machine Learning (ML).
 
+A lot of the database solutions offered by AWS could be done in an EC2 instance. However, we would need to patch the instances, create failover plans, do our own security checks, etc. Instead, most of the database solutions offered by AWS are managed (i.e., AWS takes care of the aforementioned downsides) or serverless (i.e., we do not even have to instantiate a database!). The only downside to using a managed/serverless solution is that we cannot SSH into the server hosting the database.
+
 ### Amazon RDS
 RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier, but more complete databases can be billed hourly or reserved for one or three years.
 

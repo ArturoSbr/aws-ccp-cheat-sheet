@@ -121,7 +121,7 @@ A lot of the database solutions offered by AWS could be done in an EC2 instance.
 ### Amazon RDS
 RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier, but more complete databases can be billed hourly or reserved for one or three years.
 
-Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data).
+Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data). Creating read replicas scales your infrastructure horizontally and it does not increase your availability (because if the source RDS is terminated, read replicas are gone too!).
 
 ### Amazon ElastiCache
 ElastiCache is a managed in-memory database service that comes in handy whenever an application performs many reads. Instead of running the same query many times, the result is cached and made readily available for other calls that are querying the same data.

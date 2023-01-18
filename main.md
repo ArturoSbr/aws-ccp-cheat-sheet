@@ -49,7 +49,7 @@ To create an AMI, we can customize an EC2 instance, stop it and create an AMI fr
 It is a service used automate the process of creating, maintaining and testing EC2 AMIs.
 
 ### Security Groups
-We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH. We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH.
+We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH. We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH (it opens up a console that allows us to run bash commands without having to manage SSH keys). Instance Connect requires port 22 to be open (allow SSH access).
 
 We can assign IAM Roles to our EC2 instances to be able to use AWS services from them.
 
@@ -225,11 +225,11 @@ Beanstalk is a Platform as a Service (PaaS) that allows us to deploy an app in a
 8. CodeGuru: ML-powered service that can do automated code reviews (CodeGuru Reviewer) and performance recommendations (CodeGuru Profiler).
 
 ### Managing Fleets of Servers
-#### Systems Manager
-Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands on the entire fleet, etc. An agent needs to be installed on every instance.
+#### Systems Manager (SSM)
+Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands an entire fleet of servers, etc. An agent needs to be installed on every instance.
 
 #### SSM Session Manager
-Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. 
+Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. Instead, Session Manager provides a browser-based shell and CLI to access the system (which is why we do not need to open new ports or manage SSH keys).
 
 #### OpsWorks
 Server configuration with Chef and Puppet (like SSM but for these technologies).
@@ -306,17 +306,17 @@ CloudWatch logs allow us to monitor logs in real-time. CloudWatch logs can be co
 EventBridge enables us to create rules to schedule cron jobs (run services periodically) or run jobs based on a service's usage pattern (i.e., set up a rule that sends an SNS to a topic whenever the root user logs in.). It is different to SNS because ???
 
 ### CloudTrail
-CloudTrail provides you with a history of all the actions and API calls made within our AWS account. It is useful to find the answer to who, what and when questions.
+CloudTrail allows us to log and monitor actions on infrastructure made by accounts or users. We can access an event history of our actions taken through the console, SDKs, CLI and in-service actions. If we want to retain these logs for long periods of time, we can send CloudTrail actions to CloudWatch Logs or an S3 bucket.
 
-If we want to retain these logs for long periods of time, we can send CloudTrail actions to CloudWatch Logs or an S3 bucket.
+CloudTrail is more focused on accoun/user actions than CloudWatch (which is more focused on monitoring applications).
 
 ### X-Ray
 It is hard to trace bugs when we have an application that is made up of many decoupled applications. X-Ray allows us to visualize the actions in our application and makes it easy to trace bugs.
 
 ### Health Dashboard
 
-1. Service health: Shows the daily health of all the services in every region.
-2. Your account health: Provides personalized information regarding issues of services that affect your applications.
+1. Service Health Dashboard: Shows an updated table of the health status of all the services in every region. You can subscribe to an RSS feed to be notified of interruptions in any service.
+2. Your account health (Personal Health Dashboard): Provides alerts and guidance regarding issues of Amazon services that affect your applications.
 
 ## Virtual Private Cloud (VPC)
 VPCs are partitions of the AWS cloud where we can deploy our infrastructure. The following diagram shows the basic structure of the default VPC.

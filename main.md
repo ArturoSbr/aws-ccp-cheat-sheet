@@ -249,10 +249,10 @@ Elastic Beanstalk is a Platform as a Service (PaaS) that allows us to deploy and
 
 ### Managing Fleets of Servers
 #### Systems Manager (SSM)
-Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can automate patches, run commands an entire fleet of servers, etc. An agent needs to be installed on every instance.
+Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can get operational insights about the status of our infrastructure, automate patches and run commands on an entire fleet of servers, etc. An agent needs to be installed on every instance.
 
 #### SSM Session Manager
-Start a secure shell on EC2 an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. Instead, Session Manager provides a browser-based shell and CLI to access the system (which is why we do not need to open new ports or manage SSH keys).
+Start a secure shell on EC2 or an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. Instead, Session Manager provides a browser-based shell and CLI to access the system (which is why we do not need to open new ports or manage SSH keys).
 
 #### OpsWorks
 Server configuration with Chef and Puppet (like SSM but for these technologies).

@@ -311,22 +311,36 @@ Kinesis is a serverless service used to ingest data with low-latency from many s
 ### CloudWatch
 CloudWatch is a monitoring service used to track metrics, logs and trigger alerts and actions.
 
-#### Metrics
-CloudWatch Metrics is used to monitor metrics from any service on AWS. For example, we can monitor the CPU utilization of our EC2 instances over time. We can visualize the evolution of any metric over time in a CloudWatch Metrics dashboard.
+#### CloudWatch Metrics
+CloudWatch Metrics is used to monitor metrics from any service on AWS. For example, we can monitor the CPU utilization of our EC2 instances over time. We can visualize the evolution of any metric over time in a CloudWatch Metrics dashboard. We can set up metrics for EC2, EBS, S3, billing or create our own custom metrics for other services.
 
-#### Alarms
-CloudWatch Alarms are notifications that get triggered when a CloudWatch Metric passes a pre-established threshold. Alarms can trigger actions or send notifications. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
+#### CloudWatch Alarms
+Metrics &rarr; Alarms &rarr; Actions (AutoScaling, EC2 Actions or SNS notifications)
+
+CloudWatch Alarms trigger notifications when a CloudWatch Metric passes a pre-established threshold. CloudWatch Alarms can trigger actions. For example, we can send an SNS notification, stop an EC2 instance, increase the number of instances in an ASG, recover an instance if it fails, etc.
 
 To create an alarm, we can set the threshold (min, max, average, sum, etc.) and the time period during which the metric will be evaluated.
 
-#### Billing Alarms
-Billing alarms are only available in us-east-1. It shows the worldwide costs from our AWS resources. We can set up email notifications if a metric goes over a threshold.
+#### CloudWatch Billing Alarms
+Only available in `us-east-1` region! They show us the worldwide costs from our AWS resources. We can set up email notifications if a metric goes over a threshold.
 
-#### Logs
-CloudWatch logs allow us to monitor logs in real-time. CloudWatch logs can be collected from Elastic Beanstalk, ECS, Lambda functions, CloudTrail, Route 53 and CloudWatch log agents installed on EC2 instances. By default, EC2 instances do not create logs, so we need to install a CloudWatch log agent and select the logs we want to push into CloudWatch. To do this, we need to attach an IAM Role to our instance to allow it to write to CloudWatch.
+#### CloudWatch Logs
+CloudWatch logs allow us to monitor logs in real-time. CloudWatch logs can be collected from:
+- Elastic Beanstalk,
+- ECS,
+- Lambda functions,
+- CloudTrail,
+- Route 53, and
+- CloudWatch log agents installed on EC2 instances.
+
+By default, EC2 instances do not create logs, so we need to install a CloudWatch log agent and select the logs we want to push into CloudWatch. To do this, we need to attach an IAM Role to our instance to allow it to write to CloudWatch.
+
+We can adjust the time that we retain our logs (one week, a year, etc.).
 
 ### EventBridge
-EventBridge enables us to create rules to schedule cron jobs (run services periodically) or run jobs based on a service's usage pattern (i.e., set up a rule that sends an SNS to a topic whenever the root user logs in.). It is different to SNS because ???
+EventBridge is used to react to events that happen in our applications. It enables us to create rules to schedule cron jobs (run services periodically) or run jobs based on a service's usage pattern (i.e., set up a rule that sends an SNS to a topic whenever the root user logs in.).
+
+EventBridge can listen to in-house AWS events as well as third-party events (via ZenDesk, DataDog, etc.) or custom applications.
 
 ### CloudTrail
 CloudTrail allows us to log and monitor actions on infrastructure made by accounts or users. We can access an event history of our actions taken through the console, SDKs, CLI and in-service actions. If we want to retain these logs for long periods of time, we can send CloudTrail actions to CloudWatch Logs or an S3 bucket.

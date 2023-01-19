@@ -160,7 +160,7 @@ Redshift is a managed database service for Online Analytical Processing (OLAP) i
 EMR is used to create Hadoop, Spark, Presto and other types of clusters. These clusters can be composed of many EC2 instances and they all process the data together. EMR is a service that provisions and configures all the instances to create a cluster.
 
 ### Athena
-Athena is a serverless solution that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
+Athena is a serverless query service that allows us to use SQL to run queries on S3 objects. The objects can be stored in CSV, parquet, JSON and other file formats (i.e., they do not have to be stored in a table!). Athena queries are billed depending on the TBs of data scanned.
 
 ### Neptune
 Amazon Neptune is a managed graph database service. It is useful for storing highly-connected datasets, such as social networks.
@@ -208,13 +208,18 @@ Fargate is a serverless service to launch Docker containers. In contrast to ECS,
 ECR is where we store our Docker images so that we can launch them on ECS or Fargate.
 
 ### Lambda
-Lambda is a fully serverless solution to run functions on-demand. In contrast to EC2, we do not need to have an instance running continuously to execute a function every time we need it. Instead, Lambda functions are hosted by AWS (we do not need to worry about the infrastructure) and they are not running continuously; they are event-driven (i.e., they only activate when an AWS trigger is detonated.). Scaling is fully automated (no need to define a load balancer or auto scaling group). We are billed for each call we make and the time it takes to run the function.
+Lambda is a fully serverless solution to run functions on-demand. In contrast to EC2, we do not need to have an instance running continuously to execute a function every time we need it. Instead, Lambda functions are hosted by AWS (we do not need to worry about the infrastructure) and they are not running continuously; they are event-driven (i.e., they only activate when an AWS trigger is detonated). Scaling is fully automated (no need to define a load balancer or auto scaling group). We are billed for each call we make and the time it takes to run the function.
 
 ### API Gateway
-API Gateway is a managed service to expose the API of a Lambda function so that the end user can invoke the function. It allows us to create, publish and maintain APIs in the cloud.
+API Gateway is a managed service to build serverless APIs. We can use API Gateway to expose the API of a Lambda function so that the end user can invoke it. It allows us to create, publish and maintain APIs in the cloud.
 
 ### Batch
-Batch is a managed service to run batch jobs packaged in Docker containers. Batch provisions optimized EC2 instances to run our batch jobs. The service runs on ECS and it auto-scales automatically.
+Batch is a managed service to run batch jobs packaged in Docker containers. Batch automatically provisions optimized EC2 instances to run our batch jobs. The service runs on ECS and it auto-scales automatically. It is similar to a Lambda function, but it is made to receive a batch of requests and the "function" is defined in a Docker image, not just code in a Lambda.
+
+### Lambda VS Batch
+Lambda functions have a time limit (15 minutes), it only supports certain languages (Batch supports any language because the job is containerized), it has limited disk space.
+
+Batch is not serverless because it relies on EC2 instances (managed by AWS).
 
 ### Lightsail
 Lightsail is a beginner-friendly alternative to EC2 instances. The services provides us with virtual servers, storage, databases and networking to deploy simple web-applications (because it does not auto-scale).
@@ -222,10 +227,12 @@ Lightsail is a beginner-friendly alternative to EC2 instances. The services prov
 ## Infrastructure
 
 ### CloudFormation
-CloudFormation is referred to as Infrastructure as Code. The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together. Another advantage is that the process is not manual, so we can use the same code to deploy the same infrastructure in different environments. Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
+CloudFormation is referred to as Infrastructure as Code. The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together.
+
+One advantage is that the process is not manual, so we can use the same code to deploy the same infrastructure in different environments. Moreover, we can automate the deletion and creation of templates to optimize costs (not billed when template is not running). Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
 
 ### Cloud Development Kit (CDK)
-CDK is the same as CloudFormation except that we can configure our environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.
+CDK is the same as CloudFormation except that we can configure an environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.
 
 ### Elastic Beanstalk
 Elastic Beanstalk is a Platform as a Service (PaaS) that allows us to deploy and scale applications in a single developer-friendly platform. Beanstalk handles instance configuration, deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CloudFormation can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.

@@ -22,13 +22,13 @@ The root user is the account owner and has access to all of AWS. The root user h
 EC2 is a services that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc.
 
 ### EC2 Purchasing Options
-There are four options to rent EC2 instances.
+There are six options to rent EC2 instances.
 1. On-Demand: Expensive, billed by seconds used, minimum time billed is 60 seconds.
 2. Reserved Instances: Commit to renting an instance for one or three years. Instance type, region, Availability Zone (AZ) and OS are fixed for this period. We get a discounted rate whenever we start an instance that matches the attributes of an active reserved instance.
 3. Savings Plan: Commit to an hourly expenditure between one or three years (i.e., $0.15/hour for one year) in a region. Instance family (e.g., t2, t3 or m5) and region remain fixed. The cost of launching a t2.micro or a t2.xlarge are the same and it does not matter which AZ we launch it in.
 4. Spot Instances: Define a maximum price you are willing to pay and compare that against the market's spot price. If the spot price is greater than our threshold, we lose the instance.
 5. Dedicated Instance: Reserve a physical server from AWS.
-5. Dedicated Hosts: Same as a Dedicated Instance, except we can bring our own licenses (BYOL).
+6. Dedicated Hosts: Same as a Dedicated Instance, except we can bring our own licenses (BYOL).
 
 ### EC2 Storage Options
 
@@ -454,7 +454,7 @@ Control Tower runs on top of Organizations and it is a service to govern a multi
 3. Volume discounts: Get better rates for using high volumes (such as in S3 or consolidated billing).
 4. AWS economies of scale: As AWS grows, they can offer better prices for us.
 
-### Free tier
+### Free Tier
 1. IAM
 2. VPC
 3. Consolidated billing
@@ -482,10 +482,19 @@ Allows us to create more detailed reports than the Billing Dashboard. It is the 
 ### Cost Explorer
 Allows us to create custom reports to understand our bills at a high level (hourly or monthly). It is useful to view our costs over time and forecast our usage and costs for up to 12 months. Cost Explorer also recommends us Savings Plans based on our usage.
 
+### CloudWatch Billing Alarms
+These alarms show actual costs and are only available in `us-east-1` (though it groups worldwide costs). We can set up an Alarm to trigger a Notification Event, but it is intended for simple use cases (not as general as Budgets).
+
 ### Budgets
 We can create budgets that send alerts when the actual costs or forecasted costs exceed our thresholds (CloudWatch Billing Alarms does not alert you based on your forecasted costs!).
 
-Budgets can also send alerts when the utilization of our reserved services are lower than a threshold.
+Budgets can send more general alerts than CloudWatch Billing. For example, we can set alerts when the utilization of our reserved services are lower than a threshold. Additionally, we can get alerts for our forecasted costs.
+
+There are four types of budgets we can create:
+1. Usage
+2. Costs
+3. Reserved Instances
+4. Savings Plan
 
 ### Trusted Advisor
 Trusted Advisor is a tool that runs checks on our account and recommends actions to follow AWS best practices. It recommends actions based on five categories:

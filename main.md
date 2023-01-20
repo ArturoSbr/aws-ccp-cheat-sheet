@@ -43,6 +43,8 @@ Since EBS volumes are not physically attached to EC2 instances, their performanc
 #### Elastic File System (EFS)
 EFS is a network file system that can be mounted on multiple Linux EC2 instances at the same time. It is an improvement over EBS because it let's us share storage across multiple EC2 instances over multiple AZs (i.e., two EC2 instances can write on the same storage system and the data is synced).
 
+S3 cannot be used as a substitute for EFS because it does not support appends to a file (we can only overwrite a whole object). For this reason, EFS is the go-to solution when many instances need to write on a shared a storage device.
+
 #### FSx
 Used for launching third-party file systems on other operating systems (Windows and Lustre).
 

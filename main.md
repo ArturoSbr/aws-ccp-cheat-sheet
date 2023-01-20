@@ -553,12 +553,12 @@ If you are subscribed to the Business or Enterprise Support Plans, you get the f
 
 ### Six Pillars of Well-Architected Frameworks
 There are six pillars recommended by AWS to create well-architected solutions. The following list shows the services related to each pillar.
-1. Operational Excellence: CloudFormation, Config, CloudTrail, CloudWatch, X-Ray and CI/CD tools.
-2. Security: IAM, KMS, Organizations, Config, CloudTrail, CloudWatch, CloudFront, VPC, Shield, WAF and Inspector.
-3. Reliability: Trusted Advisor, CloudWatch, Auto Scaling, CloudTrail, Route 53.
-4. Performance Efficiency: EC2, Lambda, Auto Scaling, Load Balancing and Database services.
-5. Cost Optimization: Budgets, Cost Explorer, Cost and Usage Reports, use spot/reserved instances and use correct storage option.
-6. Sustainability: Auto Scaling, Lambda, Fargate, Cost Services, S3 Intelligent Tiering and Lifecycle Policies.
+1. Operational Excellence: Perform operations as code, document everything and make small, reversible changes.
+2. Security: Least privileges philosophy, enable traceability, secure all layers and protect data (transit and at rest), simulate attacks.
+3. Reliability: Automate and test recovery procedures, horizontal scalability (resources should not share common points of failure) and auto scale capacity.
+4. Performance Efficiency: Use serverless infrastructure and adopt new services.
+5. Cost Optimization: Reduce capital expenses, measure efficiency and adopt consumption and reserved payment modes.
+6. Sustainability: Establish sustainability goals, use most efficient services or instances and reduce need for your customers to upgrade devices.
 
 ### Well-Architected Tool
 Well-Architected Tool is a free tool that reviews your architecture to assess its compliance with the six pillars. 

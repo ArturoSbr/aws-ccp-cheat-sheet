@@ -140,6 +140,8 @@ DynamoDB is a serverless solution (i.e., we do not need to instantiate a databas
 
 DynamoDB has ultra-low latency retrieval (<10 ms) and can handle millions of requests per second. It also has a cheaper Infrequent Access tier for objects that are accessed infrequently.
 
+Finally, if we are able to predict our IOs, we can use DynamoDB Reserved Capacity to reduce costs.
+
 ### DynamoDB Global Tables
 DynamoDB tables can be turned into Global Tables to allow <10 ms latency read/writes in multiple regions. This is called active-active replication because we can actively read/write in one region and it will be actively replicated in another region.
 
@@ -472,6 +474,8 @@ Allows us to create custom reports to understand our bills at a high level (hour
 
 ### Budgets
 We can create budgets that send alerts when the actual costs or forecasted costs exceed our thresholds (CloudWatch Billing Alarms does not alert you based on your forecasted costs!).
+
+Budgets can also send alerts when the utilization of our reserved services are lower than a threshold.
 
 ### Trusted Advisor
 Trusted Advisor is a tool that runs checks on our account and recommends actions to follow AWS best practices. It recommends actions based on five categories:

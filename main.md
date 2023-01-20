@@ -454,8 +454,8 @@ Control Tower runs on top of Organizations and it is a service to govern a multi
 5. CloudFormation, Elastic Beanstalk
 6. Autoscaling groups
 
-### Cost Optimizer
-Cost Optimizer looks at our compute resources and determines if any of them are over or under-provisioned. The main goal is to reduce costs and improve performance by optimizing our resources.
+### Compute Optimizer
+Compute Optimizer analyzes the historical utilization of our resources to determine if any of them are over or under-provisioned. The main goal is to reduce costs and improve performance by optimizing our resources.
 
 ### Pricing Calculator
 Estimate the yearly cost for your architecture solution.

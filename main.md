@@ -389,7 +389,7 @@ We can attack our own infrastructure without asking for permission from AWS for 
 ### DDoS Protection
 1. Shield Standard: Free DDoS protection for your websites and applications.
 2. Shield Advanced: Premium DDoS with 24/7 surveillance.
-3. Web Application Firewall (WAF): Filter requests based on rules (e.g., only one request per 10 minutes).
+3. Web Application Firewall (WAF): Filter layer 7 requests (HTTP and HTTPS) based on rules (e.g., only one request per 10 minutes).
 
 ### Encryption
 #### Key Management Service (KMS)

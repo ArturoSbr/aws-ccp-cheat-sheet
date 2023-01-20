@@ -469,7 +469,9 @@ Compute Optimizer analyzes the historical utilization of our resources to determ
 Estimate the yearly cost for your architecture solution.
 
 ### Billing Dashboard
-Shows a high-level dashboard with the costs of the current month. It breaks down the total monthly bill by service. It also shows the free tier usage limit, our month-to-date usage and the forecasted usage by the end of the month.
+Shows a high-level dashboard with the costs of the current month, breaking down our monthly bill by service. It also contains a Free Tier Usage dashboard, which shows the free tier usage limit of services, our month-to-date usage and the forecasted usage by the end of the month.
+
+Although the Free Tier Usage dashboard can forecast the usage of our services, it is not a service made for forecasting (see AWS Cost Explorer).
 
 ### Cost Allocated Tags
 We can use cost allocation tags when launching new services to track our AWS costs. Some tags are applied automatically (e.g., createdBy: Elastic Beanstalk). We can also define our own tags (which come with the prefix `user:`), which will help us group costs by tag. We can manage tags using the Resource Groups & Tag Editor.

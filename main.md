@@ -57,7 +57,12 @@ To create an AMI, we can customize an EC2 instance, stop it and create an AMI fr
 It is a service used automate the process of creating, maintaining and testing EC2 AMIs.
 
 ### Security Groups
-We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH. We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH (it opens up a console that allows us to run bash commands without having to manage SSH keys). Instance Connect requires port 22 to be open (allow SSH access).
+We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH.
+
+Security Groups work at the instance level and we can only specify "allow" actions. More info on VPC section.
+
+### EC2 Instance Connect
+We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH (it opens up a console that allows us to run bash commands without having to manage SSH keys). Instance Connect requires port 22 to be open (allow SSH access).
 
 We can assign IAM Roles to our EC2 instances to be able to use AWS services from them.
 

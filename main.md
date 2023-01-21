@@ -286,7 +286,9 @@ CloudFront is a Content Delivery Network (CDN) that allows us to replicate part 
 Speed up client &rarr; edge location &rarr; S3 Bucket. S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
 
 ### Global Accelerator
-Global Accelerator allows clients to connect to edge locations and routes the traffic through the AWS private network. It is different to S3 Transfer Accelerator because it works with other services apart from S3. For example, we can set up an ALB in Germany and users can interact with our app through an edge location which routes the traffic directly to the ALB through the private network. Once again, the content is not cached. The service also integrates with Shield for DDoS protection.
+Global Accelerator allows clients to connect to edge locations and routes the traffic through the AWS private network. It is different to S3 Transfer Accelerator because it works with other services apart from S3. For example, we can set up an ALB in Germany and users can interact with our app through an edge location which routes the traffic directly to the ALB through the private network. The content is not cached though!
+
+Global Accelerator is good for non-HTTP use cases, such as gaming, IoT devices, etc. The service also integrates with Shield for DDoS protection.
 
 ### Outposts
 Outposts are AWS server racks that AWS installs in your company's premises so that you can use AWS as if you were in the cloud, but the services are running locally (from the racks installed). For example, if you start an EC2 instance in an outpost, it will behave the same way as before, but it will be hosted from within the company's premises. The users are now responsible for the physical security of the racks, but it gives us low-latency and our data never leaves our premises.

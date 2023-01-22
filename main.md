@@ -45,6 +45,8 @@ EFS is a network file system that can be mounted on multiple Linux EC2 instances
 
 S3 cannot be used as a substitute for EFS because it does not support appends to a file (we can only overwrite a whole object). For this reason, EFS is the go-to solution when many instances need to write on a shared a storage device.
 
+Finally, EFS is a hybrid service. On-premises servers can read/write to EFS through AWS Direct Connect or AWS VPN.
+
 #### FSx
 Used for launching third-party file systems on other operating systems (Windows and Lustre).
 

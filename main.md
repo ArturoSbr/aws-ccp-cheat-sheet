@@ -280,9 +280,9 @@ Route 53 allows us to configure Routing Policies.
 4. Failover RP: Route 53 can do health checks on a primary EC2 instance and will redirect all traffic to a failover instance if the primary fails.
 
 ### CloudFront
-CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our app in multiple edge locations or to cache our app's content at edge locations. This greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section).
+CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our web app (html, css, js and image files) in multiple edge locations by caching content at edge locations. Content that is frequently accessed is served from edge locations, which greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section).
 
-CloudFront connects to S3 buckets and HTTP servers (called "origins"). It stores requests in local caches and delivers the cached content to users close by. The origins can be protected using Origin Access Control and S3 Bucket Policies.
+CloudFront connects to S3 buckets and HTTP servers (called "origins"). The origins can be protected using Origin Access Control and S3 Bucket Policies.
 
 ### S3 Transfer Accelerator
 Speed up client &rarr; edge location &rarr; S3 Bucket. S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.

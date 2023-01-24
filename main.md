@@ -408,7 +408,7 @@ Logs to monitor IP traffic coming in our out of our VPC (allowed or denied).
     - VPC Endpoint Gateway: Connect S3 and DynamoDB to your VPC.
     - VPC Endpoint Interface: Connect all other services to your VPC.
 2. VPC Peering: Connect a few VPCs together using the AWS private network to make them behave a single network. The connections are not transitive! For example, if A is peered with B and B is peered with C, we need to create a connection between A and C manually.
-3. VPC PrivateLink: Connect many VPCs together (like VPC Peering, but for a larger network).
+3. VPC PrivateLink: Connect a VPC to another VPC that is hosting an AWS service.
 4. Site to Site VPN: Encrypted connection from your on-premises data center to your AWS VPC though the public internet. Customer needs to set up a Customer Gateway on their premises as well as a Virtual Private Gateway in the VPC.
 5. Direct Connect: Create a physical connection to AWS.
 6. Client VPN: Connect your computer to your VPC so that you can connect to EC2 instances through their private IPs (instead of using their public IPs, which is less secure).

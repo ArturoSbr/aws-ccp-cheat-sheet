@@ -117,8 +117,8 @@ S3 Glacier is a storage class meant for archiving data. There is a cost for stor
 2. S3 Glacier Flexible Retrieval: For data that is accessed once or twice a year. Retrieval time varies between one minute and 12 hours. Minimum storage duration is 90 days.
     a. Expedited: One to five minutes.
     b. Standard: Three to five hours.
-    c. Buld: Five to twelve hours (no retrieval cost).
-3. S3 Glacier Deep Archive: For data that is accessed less than once a year. Retrieval time varies between 12 and 48 hours. Minimum storage duratino is 180 days.
+    c. Bulk: Five to twelve hours (no retrieval cost).
+3. S3 Glacier Deep Archive: For data that is accessed less than once a year. Retrieval time varies between 12 and 48 hours. Minimum storage duration is 180 days.
 
 ### S3 Intelligent-Tiering
 A service that monitors how often you access your data and moves objects from one tier to another to minimize your costs. There are no retrieval charges in S3 Intelligent-Tiering, but there is a small fee for monitoring the usage of your data.

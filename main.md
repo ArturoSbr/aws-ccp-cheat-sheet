@@ -435,7 +435,7 @@ Portal where we can access the compliance documentation and agreements. For exam
 Macie is a fully managed service that scans your data to detect sensitive information. Macie notifies you via EventBridge when it discovers data that can be classified as sensitive.
 
 ### GuardDuty
-Automated service that uses ML to discover anomalies in your account. The service looks at your logs (CloudTrail, S3, etc.) to determine if something unusual is going on. It can be synced with EventBridge to send SNS notifications when the service finds something suspicious.
+Automated service that uses ML to discover anomalies in your account. The service looks at your logs (CloudTrail, S3, etc.) to determine if something unusual is going on. It can be synced with EventBridge to send SNS notifications when the service finds something suspicious. The service focuses on account-level access anomalies, unlike Inspector, which focuses on instance-level access.
 
 ### Inspector
 Run automated security assessments for EC2, ECR and Lambda functions. It will report its findings to the AWS Security Hub as well as EventBridge.
@@ -566,7 +566,7 @@ If you are subscribed to the Business or Enterprise Support Plans, you get the f
 There are six pillars recommended by AWS to create well-architected solutions. The following list shows the services related to each pillar.
 1. Operational Excellence: Perform operations as code, document everything and make small, reversible changes.
 2. Security: Least privileges philosophy, enable traceability, secure all layers and protect data (transit and at rest), simulate attacks.
-3. Reliability: Automate and test recovery procedures, horizontal scalability (resources should not share common points of failure) and auto scale capacity.
+3. Reliability: Foundations, change management and failure management. Automate and test recovery procedures, horizontal scalability (resources should not share common points of failure) and auto scale capacity.
 4. Performance Efficiency: Use serverless infrastructure and adopt new services.
 5. Cost Optimization: Reduce capital expenses, measure efficiency and adopt consumption and reserved payment modes.
 6. Sustainability: Establish sustainability goals, use most efficient services or instances and reduce need for your customers to upgrade devices.

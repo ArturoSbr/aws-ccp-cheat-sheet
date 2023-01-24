@@ -382,8 +382,8 @@ VPCs are partitions of the AWS cloud where we can deploy our infrastructure. The
 - Virtual Private Cloud: Tied to an AWS region.
 - Subnets: Tied to an AZ.
 - Route Tables: Routes used to connect subnets together or connect to the internet.
-- NACL: Subnet-level firewall with a list of allowed and denied IPs.
-- Security Groups: Instance-level firewall with a list of allowed IPs or other SGs.
+- NACL: Subnet-level firewall with a list of allowed and denied IPs (i.e., they surround a public subnet). NACLs are called "stateful" because outbound traffic is automatically blocked and must be explicitly allowed.
+- Security Groups: Instance-level firewall with a list of allowed IPs or other SGs (only "allow" statements). SGs are called "stateless" because they automatically allow outbound traffic (contrary to manually allowing inbound HTTP, HTTPS or SSH traffic).
 
 ### VPC Flow Logs
 Logs to monitor IP traffic coming in our out of our VPC (allowed or denied).

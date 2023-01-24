@@ -37,7 +37,12 @@ There are six options to rent EC2 instances.
 ### EC2 Storage Options
 
 #### Elastic Block Store (EBS)
-We can attach EBS volumes to an EC2 instance for storage. EBS volumes are network drives (they are not physically attached to an instance) and are locked to an availability zone. To move a volume between AZs, we need to take a snapshot of the original volume and then create a new volume from the snapshot in the desired AZ. To move a volume between regions, we need to snapshot a volume, copy the snapshot to another region and then create a new volume from the snapshot. EBS volumes are useful because they allow us to persist our data. So if an instance fails, we can start where we left off by attaching the old instance's drive to the new one.
+We can attach EBS volumes to an EC2 instance for storage. EBS volumes are network drives (they are not physically attached to an instance) and are locked to an availability zone.
+
+- To move an EBS volume between AZs, we need to take a snapshot of the original volume and then create a new volume from the snapshot in the desired AZ.
+- To move a volume between regions, we need to snapshot a volume, copy the snapshot to another region and then create a new volume from the snapshot in the new region.
+
+EBS volumes are useful because they allow us to persist our data. So if an instance fails, we can start where we left off by attaching the old instance's drive to the new one.
 
 At the CCP level, EBS volumes can only be attached to a single EC2 instance.
 
@@ -55,7 +60,7 @@ Finally, EFS is a hybrid service. On-premises servers can read/write to EFS thro
 Used for launching third-party file systems on other operating systems (Windows and Lustre).
 
 ### Amazon Machine Image (AMI)
-AMIs are customizations of EC2 instances that specify the OS, configuration and software installed. AMIs are region-locked, so we must create a copy if we want to move an AMI across regions. AMIs are useful to automate the standardized creation of new instances. We can get faster boot times by starting instances with AMIs because all the software is pre-packaged.
+AMIs are customizations of EC2 instances that specify the OS, configuration and software installed. AMIs are region-locked, so we must create a copy if we want to move an AMI across regions (useful if we want to start an EC2 from an AMI in another region). AMIs are useful to automate the standardized creation of new instances. We can get faster boot times by starting instances with AMIs because all the software is pre-packaged.
 
 To create an AMI, we can customize an EC2 instance, stop it and create an AMI from it. We can then launch EC2 instances from this AMI.
 
@@ -63,14 +68,12 @@ To create an AMI, we can customize an EC2 instance, stop it and create an AMI fr
 It is a service used automate the process of creating, maintaining and testing EC2 AMIs.
 
 ### Security Groups
-We can define Security Groups to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH.
+We can define Security Groups (SGs) to create a firewall around our EC2 instances. This way, we can control the traffic that comes in or out of our instances. The most common protocols to communicate with an EC2 instance are HTTP, HTTPS and SSH.
 
-Security Groups work at the instance level and we can only specify "allow" actions. More info on VPC section.
+By default, SGs do not allow incoming traffic and allow all outgoing traffic. SGs work at the instance level and we can only specify "allow" actions. More info on VPC section.
 
 ### EC2 Instance Connect
-We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH (it opens up a console that allows us to run bash commands without having to manage SSH keys). Instance Connect requires port 22 to be open (allow SSH access).
-
-We can assign IAM Roles to our EC2 instances to be able to use AWS services from them.
+We can use EC2 Instance Connect to connect to our instance through our browser without explicitly setting up SSH (it opens up a console that allows us to run bash commands without having to manage SSH keys). Instance Connect requires port 22 to be open (to allow SSH access).
 
 ### Application Load Balancer (ALB)
 An ALB is a single point of access that redirects traffic to multiple EC2 instances to spread loads, avoid congestion and handle failures of downstream instances. An ALB needs a Security Group to allow incoming requests as well as a Target Group (which groups EC2 instances together and redirects traffic to them).
@@ -133,10 +136,12 @@ This section covers some of the AWS services dedicated to databases, analytics a
 A lot of the database solutions offered by AWS could be done in an EC2 instance. However, we would need to patch the instances, create failover plans, do our own security checks, etc. Instead, most of the database solutions offered by AWS are managed (i.e., AWS takes care of the aforementioned downsides) or serverless (i.e., we do not even have to instantiate a database!). The only downside to using a managed/serverless solution is that we cannot SSH into the server hosting the database.
 
 ### Storage Gateway
-Storage Gateway is a gateway that you set up in an on-premises machine that will be used to connect your on-premises infrastructure to storage services in the cloud. It is useful when you need to keep on-premises infrastructure for compliance reasons yet you want to leverage the benefits of cloud storage.
+Storage Gateway is a gateway that you set up in an on-premises machine that will be used to connect your on-premises infrastructure to storage services in the cloud. It is useful when you need to keep on-premises infrastructure for compliance reasons yet you want to leverage the benefits of cloud storage. All data is encrypted by default.
 
 ### Amazon RDS
-RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP). The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can set up failover strategies more easily (such as setting up a failover database in another AZ). RDS is included in the free tier, but more complete databases can be billed hourly or reserved for one or three years.
+RDS is a managed relationship database service compatible with MySQL, PostgreSQL, Oracle SQL, MariaDB and more. It is made for Online Transaction Processing (OLTP).
+
+The advantage of using RDS (or any managed database service) is that Amazon is responsible for the security of the  server hosting the database, its OS, etc. This way, we can focus on just deploying the database and connecting it to our application. Moreover, we can easily set up failover strategies (such as setting up a failover database in another AZ). RDS is included in the free tier, but more complete databases can be billed hourly or reserved for one or three years.
 
 #### Read Replicas
 Read Replicas are copies of your database that your application can read from (only read; writing remains centralized). This way, the queries sent by your application will be distributed across multiple instances (with the same data). Creating read replicas scales your infrastructure horizontally and it does not increase your availability (because if the source RDS is terminated, read replicas are gone too!).
@@ -246,7 +251,7 @@ Lightsail is a beginner-friendly alternative to EC2 instances. The services prov
 ## Infrastructure
 
 ### CloudFormation
-CloudFormation is referred to as Infrastructure as Code. The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together.
+CloudFormation is referred to as Infrastructure as Code (IaaC). The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together.
 
 One advantage is that the process is not manual, so we can use the same code to deploy the same infrastructure in different environments. Moreover, we can automate the deletion and creation of templates to optimize costs (not billed when template is not running). Finally, all the resources from the same CloudFormation stack share the same tags, so it makes tracking costs easier.
 

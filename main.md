@@ -41,7 +41,7 @@ At the CCP level, EBS volumes can only be attached to a single EC2 instance.
 Since EBS volumes are not physically attached to EC2 instances, their performance is not as good as a physical drives. An Instance Store is a high-performance hardware disk that has better IOPS than an EBS drive. This disk is physically connected to the computer hosting the EC2 instance. However, the data is lost if the EC2 is stopped or terminated. It is therefore recommended for temporary information that changes quickly or when our infrastructure has good fault tolerance.
 
 #### Elastic File System (EFS)
-EFS is a network file system that can be mounted on multiple Linux EC2 instances at the same time. It is an improvement over EBS because it let's us share storage across multiple EC2 instances over multiple AZs (i.e., two EC2 instances can write on the same storage system and the data is synced).
+EFS is a network file system that can be mounted on multiple Linux EC2 instances at the same time. It is an improvement over EBS because it let's us share storage across multiple EC2 instances over multiple AZs (i.e., two EC2 instances in different AZs can read/write to the same file system!).
 
 S3 cannot be used as a substitute for EFS because it does not support appends to a file (we can only overwrite a whole object). For this reason, EFS is the go-to solution when many instances need to write on a shared a storage device.
 

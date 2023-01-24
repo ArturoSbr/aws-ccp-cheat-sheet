@@ -511,7 +511,7 @@ There are four types of budgets we can create:
 
 ### Trusted Advisor
 Trusted Advisor is a tool that runs checks on our account and recommends actions to follow AWS best practices. It recommends actions based on five categories:
-1. Cost Optimization (it recommends you strategies to reduce your costs!)
+1. Cost Optimization (it recommends you strategies to reduce your costs, including terminating EC2 instances!)
 2. Performance
 3. Security
 4. Fault tolerance

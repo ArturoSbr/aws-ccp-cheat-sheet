@@ -312,8 +312,14 @@ Outposts are AWS server racks that AWS installs in your company's premises so th
 ### WaveLength
 Deploy infrastructure on nodes from the 5G network (called WaveLength zones). This is like deploying infrastructure on edge locations, except the nodes are owned by a 5G telecom carrier instead of AWS. For example, we can start an EC2 instance in a wavelength zone, which means that the server will be hosted in the carrier's data center in that node. It is used for ultra low-latency applications, such as gaming.
 
+- Some regions do not have WaveLength zones available.
+
 ### Local Zones
-Local Zones allow us to create subnets so that we can add an AZ from one region to another region. It is useful to create "custom regions".
+By default, regions have at least three AZs. Local Zones are similar to AZs and allow us to extend a region. We can deploy compute, storage, database and other services on Local Zones to deliver low-latency applications.
+
+Once we enable a local zone in a region, we can create a new subnet and deploy services in that Local Zone (closer to our users).
+
+- Some regions do not have Local Zones.
 
 ## Cloud Integrations and Monitoring
 This section covers services that can be used to integrate two apps together so they can communicate. It also covers the monitoring of applications (logs, events, etc.).

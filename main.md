@@ -493,7 +493,7 @@ Allows us to create more detailed reports than the Billing Dashboard. It is the 
 ### Cost Explorer
 Allows us to create custom reports to understand our bills at a high level (hourly or monthly). It is useful to view our costs over time and forecast our usage and costs for up to 12 months.
 
-Cost Explorer has a default report that shows our top five services. It also has rightsizing recommendations to terminate instances or suggest Savings Plans based on our usage patterns.
+Cost Explorer has a default report that shows our top five services. It also has rightsizing recommendations to terminate EC2 instances or suggest Savings Plans based on our usage patterns.
 
 ### CloudWatch Billing Alarms
 These alarms show actual costs and are only available in `us-east-1` (though it groups worldwide costs). We can set up an Alarm to trigger a Notification Event, but it is intended for simple use cases (not as general as Budgets).

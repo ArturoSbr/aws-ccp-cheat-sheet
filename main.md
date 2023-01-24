@@ -7,7 +7,7 @@ This markdown document contains the main concepts that you'll be tested on when 
 3. U2F Key: A physical drive that contains a key.
 
 ## Identity Access Management (IAM)
-IAM is a global service that allows us to manage users, groups, policies and roles. We can assign permissions to users or groups of users using Policies. Roles are policies that can be attached to entities. They are necessary for services that run actions on our behalf (like EC2).
+IAM is a global service that allows us to manage users, groups, policies and roles. We can use Policies to assign permissions to users or groups of users. Roles are policies that can be attached to entities. They are necessary for services that run actions on our behalf (like EC2).
 
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
@@ -18,8 +18,12 @@ The root user is the account owner and has access to all of AWS. The root user h
 3. Change AWS Support plan.
 4. Register in the AWS Marketplace.
 
+Policies do not affect the root user (they always have full access!).
+
 ## Elastic Compute Cloud (EC2)
-EC2 is a services that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc.
+EC2 is a service that allows us to rent virtual machines. We can choose the operating system, compute power (CPU), RAM, storage and network card. We can configure an instance's firewall rules, its bootstrap script, etc. Given that we are renting the whole virtual machine, we are responsible for its patching, updates, connectivity and everything we put inside it.
+
+The practice of putting hardware for rent is called Infrastructure as a Service (IaaS).
 
 ### EC2 Purchasing Options
 There are six options to rent EC2 instances.

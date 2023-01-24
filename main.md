@@ -549,8 +549,10 @@ If you are subscribed to the Business or Enterprise Support Plans, you get the f
 - Unlimited cases and contacts
 - Production system impaired (< 4 hours)
 - Production system down (< 1 hour)
+- Access to Infrastructure Event Management for an additional fee
 
 #### Enterprise On-Ramp
+- Free access to Infrastructure Event Management
 - Access to pool to technical account managers (better than engineers)
 - Concierge support team (billing and best practices)
 - Infrastructure reviews from experts

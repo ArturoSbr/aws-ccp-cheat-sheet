@@ -1,6 +1,8 @@
 # AWS Certified Cloud Practitioner Cheat Sheet
 This repository contains a single cheat sheet (`main.md`) that summarizes key concepts included in the AWS Certified Cloud Practitioner exam.
 
+![Certification logo](https://github.com/ArturoSbr/aws-ccp-cheat-sheet/blob/main/figures/ccp.png)
+
 # Other learning resources
 I suggest you complement this cheat sheet with at least one of the following resources.
 1. [Udemy's AWS CCP course](https://www.udemy.com/course/aws-certified-cloud-practitioner-new/) (paid)

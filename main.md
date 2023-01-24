@@ -259,7 +259,7 @@ One advantage is that the process is not manual, so we can use the same code to 
 CDK is the same as CloudFormation except that we can configure an environment using other languages (Python, Typescript, etc.) instead of YAML. CDK will parse the code and translate it to a usable YAML template.
 
 ### Elastic Beanstalk
-Elastic Beanstalk is a Platform as a Service (PaaS) that allows us to deploy and scale applications in a single developer-friendly platform. Beanstalk handles instance configuration, deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CloudFormation can be used to deploy any kind of infrastructure, whereas BS is more focused on deploying applications (not just the infrastructure) in a centralized platform.
+Elastic Beanstalk is a Platform as a Service (PaaS) that allows us to deploy and scale applications in a single developer-friendly platform. Beanstalk handles instance configuration, deployment strategy, capacity provisioning, load balancing, auto-scaling and monitoring (there is a monitoring suite inside BeanStalk!). The difference between CloudFormation and Beanstalk is that CloudFormation can be used to deploy any kind of infrastructure, whereas Beanstalk is designed to deploy applications (not just the infrastructure) in a centralized platform.
 
 ### Deploying Code
 1. CodeDeploy: Automate software deployments to a hybrid mix of servers (EC2 or on-premises). Each instance must have an agent installed.
@@ -273,13 +273,13 @@ Elastic Beanstalk is a Platform as a Service (PaaS) that allows us to deploy and
 
 ### Managing Fleets of Servers
 #### Systems Manager (SSM)
-Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 systems (view, control and patch). We can get operational insights about the status of our infrastructure, automate patches and run commands on an entire fleet of servers, etc. An agent needs to be installed on every instance.
+Hybrid (works with cloud and on-premises infrastructure) user interface to manage our EC2 and on-premises systems (view, control and patch). We can get operational insights about the status of our infrastructure, automate patches and run commands on an entire fleet of servers, etc. An agent needs to be installed on every instance.
 
 #### SSM Session Manager
 Start a secure shell on EC2 or an on-premises servers through SSM. It is safer because we do not have to enable SSH access or create SSH keys. Instead, Session Manager provides a browser-based shell and CLI to access the system (which is why we do not need to open new ports or manage SSH keys).
 
 #### OpsWorks
-Server configuration with Chef and Puppet (like SSM but for these technologies).
+Server configuration with Chef and Puppet (like SSM Session Manager but for these technologies).
 
 ##  Global Infrastructure
 The idea of deploying a global application is to host it in multiple regions to reduce latency for users around the world as well as to increase failover to other regions in case of attacks or disasters.
@@ -294,12 +294,12 @@ Route 53 allows us to configure Routing Policies.
 4. Failover RP: Route 53 can do health checks on a primary EC2 instance and will redirect all traffic to a failover instance if the primary fails.
 
 ### CloudFront
-CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our web app (html, css, js and image files) in multiple edge locations by caching content at edge locations. Content that is frequently accessed is served from edge locations, which greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section).
+CloudFront is a Content Delivery Network (CDN) that allows us to replicate part of our web app (html, css, js and image files) around the world by caching content in edge locations. Content that is frequently accessed is served from edge locations, which greatly improves read performance. It uses AWS Shield as well as AWS Web Application Firewall (WAF) to protect our app against DDoS attacks (check Security section).
 
 CloudFront connects to S3 buckets and HTTP servers (called "origins"). The origins can be protected using Origin Access Control and S3 Bucket Policies.
 
 ### S3 Transfer Accelerator
-Speed up client &rarr; edge location &rarr; S3 Bucket. S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
+Speed up the process of reading/writing to client &rarr; edge location &rarr; S3 Bucket. S3 Transfer Accelerator allows us to read/write to an edge location through the public web. The data is then sent from the edge location to the S3 bucket through the AWS private network. It is different to CloudFront because reads are not cached and allows writes. Transfer Accelerator connects the client directly to the S3 bucket. The service also integrates with Shield for DDoS protection.
 
 ### Global Accelerator
 Global Accelerator allows clients to connect to edge locations and routes the traffic through the AWS private network. It is different to S3 Transfer Accelerator because it works with other services apart from S3. For example, we can set up an ALB in Germany and users can interact with our app through an edge location which routes the traffic directly to the ALB through the private network. The content is not cached though!
@@ -307,10 +307,10 @@ Global Accelerator allows clients to connect to edge locations and routes the tr
 Global Accelerator is good for non-HTTP use cases, such as gaming, IoT devices, and other use cases that require ultra-low latency. The service also integrates with Shield for DDoS protection.
 
 ### Outposts
-Outposts are AWS server racks that AWS installs in your company's premises so that you can use AWS as if you were in the cloud, but the services are running locally (from the racks installed). For example, if you start an EC2 instance in an outpost, it will behave the same way as before, but it will be hosted from within the company's premises. The users are now responsible for the physical security of the racks, but it gives us low-latency and our data never leaves our premises.
+Outposts are AWS server racks that AWS installs in your company's premises so that you can use AWS as if you were in the cloud, but the services are running locally (in the racks installed). For example, if you start an EC2 instance in an outpost, it will behave the same way as before, but it will be hosted from within the company's premises. The users are now responsible for the physical security of the racks, but it gives us low-latency and our data never leaves our premises.
 
 ### WaveLength
-Deploy infrastructure on nodes from the 5G network. This is like deploying infrastructure on edge locations, except the nodes are owned by a 5G telecom carrier instead of AWS. For example, we can start an EC2 instance in a wavelength zone, which means that the server will be hosted in the carrier's data center in that node. It is used for ultra low-latency applications, such as gaming.
+Deploy infrastructure on nodes from the 5G network (called WaveLength zones). This is like deploying infrastructure on edge locations, except the nodes are owned by a 5G telecom carrier instead of AWS. For example, we can start an EC2 instance in a wavelength zone, which means that the server will be hosted in the carrier's data center in that node. It is used for ultra low-latency applications, such as gaming.
 
 ### Local Zones
 Local Zones allow us to create subnets so that we can add an AZ from one region to another region. It is useful to create "custom regions".

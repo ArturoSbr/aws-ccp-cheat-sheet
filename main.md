@@ -245,10 +245,10 @@ Lambda functions have a time limit (15 minutes), it only supports certain langua
 
 Batch is not serverless because it relies on EC2 instances (managed by AWS).
 
+## Infrastructure
+
 ### Lightsail
 Lightsail is a beginner-friendly alternative to EC2 instances. The services provides us with virtual servers, storage, databases and networking to deploy simple web-applications (because it does not auto-scale).
-
-## Infrastructure
 
 ### CloudFormation
 CloudFormation is referred to as Infrastructure as Code (IaaC). The service allows us to model and provision infrastructure by passing it a YAML file with all the resources we need. CloudFormation will figure out the order in which the services need to be launched and will connect them together.

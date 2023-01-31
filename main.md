@@ -25,6 +25,13 @@ EC2 is a service that allows us to rent virtual machines. We can choose the oper
 
 The practice of putting hardware for rent is called Infrastructure as a Service (IaaS).
 
+### EC2 Instance Name Format
+Different EC2 instances have different settings. The name format of EC2 instance is as follows:
+
+{instance class}{generation}.{size}
+
+For example, a `t2.micro` is a second generation instance of class `t` and size `micro`.
+
 ### EC2 Purchasing Options
 There are six options to rent EC2 instances.
 1. On-Demand: Expensive, billed by seconds used, minimum time billed is 60 seconds.

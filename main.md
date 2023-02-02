@@ -11,6 +11,32 @@ IAM is a global service that allows us to manage users, groups, policies and rol
 
 Within IAM, we can generate a Credential Report that lists the status of the credentials owned by the users in the account. We can also view the allowed services of any user with Access Advisor.
 
+### Policies
+Exams often ask about the elements of IAM Policies.
+
+A policy is a JSON document that can be attached to a user or a group to `"Allow"` or `"Deny"` actions. For example:
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "My-Statement-ID",
+            "Effect": "Allow",
+            "Action": [
+                "billing:GetBillingNotifications",
+                "billing:GetBillingData"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "BoolIfExists": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        }
+    ]
+}
+```
+
 ### Root User Privileges
 The root user is the account owner and has access to all of AWS. The root user has more permissions than even the highest-ranking admin. Some of the tasks that can only be performed by the root user are:
 1. Change account settings (name, email, root user password and root user access keys).

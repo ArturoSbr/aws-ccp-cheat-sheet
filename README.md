@@ -13,6 +13,7 @@ I suggest you complement this cheat sheet with at least one of the following res
 
 # Contribute
 The CCP exam covers a lot of different services and I probably left some stuff out. Feel free to contribute by:
-1. Creating a new branch;
-2. Making changes to it; and
-3. Opening a Pull Request.
+1. Forking the repo;
+2. Creating a new branch;
+3. Pushing your changes; and
+4. Opening a Pull Request.
